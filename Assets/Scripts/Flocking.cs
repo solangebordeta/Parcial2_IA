@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class Flocking : MonoBehaviour
 {
     private float radius = 4;
     [SerializeField] LayerMask boids;
+    [SerializeField] Seek SteeringSeek;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +33,7 @@ public class Flocking : MonoBehaviour
 
         var boidsinrange = Physics.OverlapSphere(transform.position, radius,boids);
 
-        for (int i = 0; i < boidsinrange.Length, i++)
+        for (int i = 0; i < boidsinrange.Length; i++)
         {
             Flocking boids = boidsinrange[i].GetComponent< Flocking>();
 
@@ -48,11 +50,28 @@ public class Flocking : MonoBehaviour
 
     Vector3 Cohesion() 
     {
-        return
+        int entities = 0;
+        Vector3 Center = Vector3.zero;
+
+        var boidsinrange = Physics.OverlapSphere(transform.position, radius, boids);
+        for (int i = 0; i < boidsinrange.Length; i++)
+        {
+            Flocking boids = boidsinrange[i].GetComponent<Flocking>();
+
+            if (boids == null || boids == this) continue;
+
+            Center += boids.transform.position;
+            entities++; 
+        }
+            if (entities == 0) return Center;
+
+            Center /= entities;
+        return Center;
+       // return SteeringSeek.MoveDirection(Center)
     }
 
     Vector3 alingtowards() 
     {
-        return
+        return Vector3.zero;
     }
 }
