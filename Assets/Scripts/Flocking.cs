@@ -66,12 +66,25 @@ public class Flocking : MonoBehaviour
             if (entities == 0) return Center;
 
             Center /= entities;
-        return Center;
-       // return SteeringSeek.MoveDirection(Center)
+
+        return SteeringSeek.MoveDirection();
     }
 
     Vector3 alingtowards() 
     {
+        //int count = 0;
+        //Vector3 desired = Vector3.zero;
+        //var boidsInRange = Physics.OverlapSphere(transform.position, viewRadius, boids);
+        //for (int i = 0; i < boidsInRange.Length; i++)
+        //{
+        //    Boid boid = boidsInRange[i].GetComponent<Boid>();
+        //    if (boid == null || boid == this) continue;
+        //    desired += boid.Velocity;
+        //    count++;
+        //}
+        //if (count == 0) return desired;
+        //desired /= count;
         return Vector3.zero;
+            //CalculateSteering(desired.normalized * _maxSpeed);
     }
 }

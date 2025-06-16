@@ -5,10 +5,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] int speed = 10;
-    private Rigidbody rb;
+  
  
-    void Movement()
+  public void Movement( Rigidbody rigidbody)
     {
+        Rigidbody rb = rigidbody;
         float horiontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
@@ -17,14 +18,7 @@ public class PlayerController : MonoBehaviour
         rb.MovePosition (rb.position + movement * Time.fixedDeltaTime);
     }
 
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-    }
+ 
 
-    // Update is called once per frame
-    void Update()
-    {
-        Movement();
-    }
+    
 }
