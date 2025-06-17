@@ -6,10 +6,16 @@ using UnityEngine;
 
 public class EnemyStateIdle : State<States>
 {
-  
+    private SteeringController steeringController;
+
     public EnemyStateIdle()
     {
   
+    }
+
+    public EnemyStateIdle(SteeringController steeringController)
+    {
+        this.steeringController = steeringController;
     }
 
     public override void OnEnter()

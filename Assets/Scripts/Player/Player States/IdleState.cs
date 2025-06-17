@@ -19,6 +19,11 @@ public class IdleState : State<States>
     {
         base.Execute();
     }
+
+    public override void FixedExecute()
+    {
+
+    }
     public override void OnExit() { }
 }
   

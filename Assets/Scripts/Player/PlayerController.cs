@@ -14,8 +14,8 @@ public class PlayerController : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
 
         Vector3 movement = new Vector3 (horiontalInput, 0f, verticalInput) * speed;
-
         rb.MovePosition (rb.position + movement * Time.fixedDeltaTime);
+        rb.MoveRotation (Quaternion.LookRotation(movement));
     }
 
  

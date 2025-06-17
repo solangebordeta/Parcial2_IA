@@ -14,7 +14,7 @@ public class playerFSM : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-  sheepinteract = GetComponent<interracttosheep>();
+        sheepinteract = GetComponent<interracttosheep>();
         playerController = GetComponent<PlayerController>();
         playeranim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody>();

@@ -2,12 +2,14 @@
 
 public class EnemyStateAttack : State<States>
 {
+    public WolfEnemy Enemy;
 
 
-    public EnemyStateAttack()
+    public EnemyStateAttack(WolfEnemy enemy)
     {
-      
+        Enemy = enemy;
     }
+
     public override void OnEnter()
     {
     

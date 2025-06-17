@@ -12,11 +12,10 @@ public class SteeringController : MonoBehaviour
     public SteeringMode mode;
 
     [Header("References")]
-    public Transform target;
-    public Rigidbody targetrb;
-    public Transform[] Waypoints;
+    public Transform Playertarget;
+    public Transform Sheeptarget;
+    public Rigidbody Sheeptargetrb;
     public ObstacleAvoidance obstacleAvoidance; //(Se arrastra el script desde el inspector)
-    public WaypointController controller;
     private ISteering currentSteering;
     public Rigidbody rb;
     private Vector3 finalForce;
@@ -25,7 +24,7 @@ public class SteeringController : MonoBehaviour
     Flee flee;
     Persuit persuit;
     Evade evade;
-    Seek seek;
+    Flock flock;
     None none;
     public enum SteeringMode
     {
@@ -34,25 +33,22 @@ public class SteeringController : MonoBehaviour
         persuit,
         evade,
         None,
+        follow,
     }
 
     void Start()
     {
         //se crean los objetos de cada comportameinto con sus dependencias
         none = new(rb);
-        flee = new(rb, target, maxVelocity);
-        persuit = new(rb, targetrb, maxVelocity, timePrediction);
-        evade = new(rb, targetrb, maxVelocity, timePrediction);
-        seek = new(rb, target,maxVelocity);
+        flee = new(rb, Playertarget, maxVelocity);
+        persuit = new(rb, Sheeptargetrb, maxVelocity, timePrediction);
+        evade = new(rb, Sheeptargetrb, maxVelocity, timePrediction);
+;
       
         //el comp. inicial es ninguna
         currentSteering = none;
     }
-    public void gotoposition(Transform wptarget) //cambia el objetivo del seek
-    {
-     seek.target = wptarget;
-     
-    }
+ 
     public void ExecuteSteering() //ejecuta la logica del comportamiento
     {
     
@@ -83,9 +79,7 @@ public class SteeringController : MonoBehaviour
 
         switch (mode)
         {
-            case SteeringMode.seek:
-                currentSteering = seek;
-                break;
+        
             case SteeringMode.flee:
                 currentSteering = flee;
                 break;
@@ -97,7 +91,10 @@ public class SteeringController : MonoBehaviour
                 break;
                 case SteeringMode.None: currentSteering = none; 
                 break;
-            
+            case SteeringMode.follow:
+                currentSteering = flock;
+                break;
+
         }
     }
 }

@@ -8,11 +8,11 @@ using Vector3 = UnityEngine.Vector3;
 
 public class EnemyStatePatrol : State<States>
 {
-  
 
-    public EnemyStatePatrol()
+    PFEntity enemyPF;
+    public EnemyStatePatrol(PFEntity entity)
     {
-
+        this.enemyPF = entity;
     }
 
     public override void OnEnter()
@@ -24,6 +24,11 @@ public class EnemyStatePatrol : State<States>
     {
   
        
+    }
+
+    public override void OnExit()
+    {
+        
     }
 }
 

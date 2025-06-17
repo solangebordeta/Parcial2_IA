@@ -7,9 +7,11 @@ using static UnityEngine.GraphicsBuffer;
 public class EnemyStateChase : State<States>
 {
 
-
-    public EnemyStateChase()
-    { }
+    SteeringController controller;
+    public EnemyStateChase(SteeringController controller)
+    {
+        this.controller = controller;
+        }
 
 
     public override void OnEnter()
