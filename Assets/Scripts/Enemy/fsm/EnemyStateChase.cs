@@ -32,7 +32,7 @@ public class EnemyStateChase : State<States>
     public override void FixedExecute()
     {
        
-
+        steeringController.ExecuteSteering();
     }
     
     

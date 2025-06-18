@@ -10,8 +10,9 @@ public class SheepController : MonoBehaviour
 [SerializeField] Flocking flock;
 [SerializeField] lineofsight LOS;
 [SerializeField] Sheep Sheep;
-   
 
+ public GameObject Wolf;
+ 
  SheepMoveState moveState;
  SheepRunState runState;
  SheepFlockState flockState;
@@ -36,7 +37,7 @@ public class SheepController : MonoBehaviour
     {
 
        moveState = new SheepMoveState(PFEntity);
-       runState = new SheepRunState(controller);
+       runState = new SheepRunState(controller,Wolf);
        flockState = new SheepFlockState(controller,flock);
 
         moveState.AddTransition(States.RunAway, runState);

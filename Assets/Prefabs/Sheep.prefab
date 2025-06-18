@@ -159,6 +159,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sheep
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2873d317e175f5649ad22adee108b666, type: 3}
+      propertyPath: m_TagString
+      value: Sheep
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -213,7 +217,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce70e46759af4a64ea2f2ef2a9d392cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 10
 --- !u!114 &4417375855847567141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,6 +234,7 @@ MonoBehaviour:
   flock: {fileID: 8809700921450316865}
   LOS: {fileID: 3238303432994451896}
   Sheep: {fileID: 5817547521059542822}
+  wolf: {fileID: 0}
 --- !u!54 &2303425046122756948
 Rigidbody:
   m_ObjectHideFlags: 0

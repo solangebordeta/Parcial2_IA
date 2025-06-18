@@ -60,9 +60,9 @@ public class EnemyController : MonoBehaviour
     {
 
         patrol = new EnemyStatePatrol(PathFinding);
-        chase = new EnemyStateChase(SteeringController,Sheep);
+        chase = new EnemyStateChase(SteeringController,Sheep,this);
         idle = new EnemyStateIdle(SteeringController);
-        attack = new EnemyStateAttack(enemy,Sheep);
+        attack = new EnemyStateAttack(enemy);
         runAway = new EnemyStateRunAway(SteeringController);
         patrol.AddTransition(States.Idle, idle);
         patrol.AddTransition(States.Chase, chase);

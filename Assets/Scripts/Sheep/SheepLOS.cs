@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class EnemyLOS : MonoBehaviour
+public class SheepLOS : MonoBehaviour
 {
     [SerializeField] private LayerMask obstaclesMask;
 
@@ -12,7 +12,7 @@ public class EnemyLOS : MonoBehaviour
     public float loseplayer;
     public float detectionAngle;
 
-    public EnemyController controller;
+    public SheepController controller;
 
     //Comprueba si el objetivo estÅEdentro del rango de visiÛn.
 
@@ -24,7 +24,7 @@ public class EnemyLOS : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit rayinfo, detectionRange, obstaclesMask))
         {
 
-            if (rayinfo.collider.gameObject.CompareTag("Sheep")) controller.Sheep = rayinfo.collider.gameObject;
+            if (rayinfo.collider.gameObject.CompareTag("Wolf")) controller.Wolf = rayinfo.collider.gameObject;
 
             return true;
         }

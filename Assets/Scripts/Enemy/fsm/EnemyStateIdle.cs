@@ -25,8 +25,8 @@ public class EnemyStateIdle : State<States>
 
     public override void Execute()
     {
-   
-      
+
+        steeringController.ExecuteSteering();
     }
     public override void FixedExecute()
     {
