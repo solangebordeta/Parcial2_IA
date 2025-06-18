@@ -1,16 +1,22 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
 
 public class EnemyController : MonoBehaviour
 {
-    PFEntity PathFinding;
-    [SerializeField] private SteeringController SteeringController;
 
-    [SerializeField] WolfEnemy enemy;
+   [SerializeField] PFEntity PathFinding;
+   [SerializeField] private WolfSteering SteeringController;
+   [SerializeField] WolfEnemy enemy;
 
+    [SerializeField] lineofsight playerLOS;
+    [SerializeField] EnemyLOS wolfLOS;
+    [SerializeField] EnemyLOS wolfAttackLOS;
+    [SerializeField] GameObject player;
+    public GameObject Sheep;
     private FSM<States> fsm;
     EnemyStateIdle idle;
     EnemyStateAttack attack;
@@ -32,15 +38,31 @@ public class EnemyController : MonoBehaviour
         var attack = new ActionTree(() => fsm.OnTransition(States.Attack));
         var chase = new ActionTree(() => fsm.OnTransition(States.Chase));
         var runAway = new ActionTree(() => fsm.OnTransition(States.RunAway));
+
+        var iscloseto = new QuestionTree(() => inattackRange(), attack, chase);
+        var qsawsheep = new QuestionTree(() => hasseemsheep(), iscloseto, patrol);
+        var qsawbyplayer = new QuestionTree(() => ISbeingseen(), runAway,qsawsheep);
+        root = qsawbyplayer;
+
+        
+    }
+
+     bool inattackRange()
+    {
+        return Vector3.Distance(this.transform.position, Sheep.transform.position) <= wolfAttackLOS.detectionRange;
+    }
+   bool hasseemsheep()
+    {
+        return wolfLOS.seeingsomething();
     }
 
     private void IninFSM()
     {
 
         patrol = new EnemyStatePatrol(PathFinding);
-        chase = new EnemyStateChase(SteeringController);
+        chase = new EnemyStateChase(SteeringController,Sheep);
         idle = new EnemyStateIdle(SteeringController);
-        attack = new EnemyStateAttack(enemy);
+        attack = new EnemyStateAttack(enemy,Sheep);
         runAway = new EnemyStateRunAway(SteeringController);
         patrol.AddTransition(States.Idle, idle);
         patrol.AddTransition(States.Chase, chase);
@@ -61,10 +83,14 @@ public class EnemyController : MonoBehaviour
         fsm = new FSM<States>(idle);
     }
 
+    bool ISbeingseen()
+    {
+        return Vector3.Distance(this.transform.position,player.transform.position) <= playerLOS.detectionRange;
+    }
     // Update is called once per frame
     void Update()
     {
-      //  fsm.OnExecute();
+      //fsm.OnExecute();
        // root.Execute();
         
     }

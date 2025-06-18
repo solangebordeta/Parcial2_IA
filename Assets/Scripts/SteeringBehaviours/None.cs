@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework.Constraints;
 using UnityEngine;
-using static SteeringController;
+using static WolfSteering;
 using static UnityEngine.GraphicsBuffer;
 public class None : ISteering 
 {

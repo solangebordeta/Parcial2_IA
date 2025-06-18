@@ -6,21 +6,21 @@ using UnityEngine;
 
 public class EnemyStateIdle : State<States>
 {
-    private SteeringController steeringController;
+    private WolfSteering steeringController;
 
     public EnemyStateIdle()
     {
   
     }
 
-    public EnemyStateIdle(SteeringController steeringController)
+    public EnemyStateIdle(WolfSteering steeringController)
     {
         this.steeringController = steeringController;
     }
 
     public override void OnEnter()
     {
-    
+    steeringController.ChangeStearingMode(WolfSteering.SteeringMode.None);
     }
 
     public override void Execute()

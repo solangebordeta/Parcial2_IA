@@ -1,10 +1,11 @@
-using NUnit.Framework.Constraints;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using static SteeringController;
-using static UnityEngine.GraphicsBuffer;
+using static WolfSteering;
 
 [RequireComponent(typeof(Rigidbody))]
-public class SteeringController : MonoBehaviour
+
+public class SheepSteering : MonoBehaviour
 {
     [Header("Parameters")]
     public float maxVelocity = 10f;
@@ -13,46 +14,44 @@ public class SteeringController : MonoBehaviour
 
     [Header("References")]
     public Transform Playertarget;
-    public Transform Sheeptarget;
-    public Rigidbody Sheeptargetrb;
+    public Rigidbody PlayerRb;
+    public Transform WolfTransform;
+    public Rigidbody WolfTargetRb;
     public ObstacleAvoidance obstacleAvoidance; //(Se arrastra el script desde el inspector)
     private ISteering currentSteering;
     public Rigidbody rb;
     private Vector3 finalForce;
 
-    //instancias de los comportamientos
     Flee flee;
-    Persuit persuit;
     Evade evade;
     Flock flock;
     None none;
+
+
     public enum SteeringMode
     {
-        seek,
         flee,
-        persuit,
         evade,
         None,
         follow,
     }
-
     void Start()
     {
-        //se crean los objetos de cada comportameinto con sus dependencias
         none = new(rb);
-        flee = new(rb, Playertarget, maxVelocity);
-        persuit = new(rb, Sheeptargetrb, maxVelocity, timePrediction);
-        evade = new(rb, Sheeptargetrb, maxVelocity, timePrediction);
-;
-      
+        flee = new(rb, WolfTransform, maxVelocity);
+        evade = new(rb, WolfTargetRb, maxVelocity, timePrediction);
+        ;
+
         //el comp. inicial es ninguna
         currentSteering = none;
     }
+
  
+  
     public void ExecuteSteering() //ejecuta la logica del comportamiento
     {
-    
-        Vector3 steeringDir = currentSteering.MoveDirection();                                                                                                                                       
+
+        Vector3 steeringDir = currentSteering.MoveDirection();
 
         //dirección de evasión de obstáculos
         Vector3 avoidDir = obstacleAvoidance ? obstacleAvoidance.Avoid() : Vector3.zero;
@@ -70,7 +69,7 @@ public class SteeringController : MonoBehaviour
                 transform.forward = rb.velocity.normalized;
         }
 
-      
+
     }
 
     public void ChangeStearingMode(SteeringMode mode) //cambia el comportamiento segun el modo
@@ -79,17 +78,16 @@ public class SteeringController : MonoBehaviour
 
         switch (mode)
         {
-        
+
             case SteeringMode.flee:
                 currentSteering = flee;
                 break;
-            case SteeringMode.persuit:
-                currentSteering = persuit;
                 break;
             case SteeringMode.evade:
                 currentSteering = evade;
                 break;
-                case SteeringMode.None: currentSteering = none; 
+            case SteeringMode.None:
+                currentSteering = none;
                 break;
             case SteeringMode.follow:
                 currentSteering = flock;
@@ -98,4 +96,3 @@ public class SteeringController : MonoBehaviour
         }
     }
 }
-

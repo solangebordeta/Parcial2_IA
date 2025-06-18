@@ -11,6 +11,8 @@ public class PFEntity : MonoBehaviour
 
     public List<PFNodes> SetPath { set { path = value; } }
 
+
+    
     // Update is called once per frame
     void Update()
     {

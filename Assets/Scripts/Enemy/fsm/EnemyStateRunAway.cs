@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class EnemyStateRunAway : State<States>
 {
-    public SteeringController SteeringController;
+    public WolfSteering SteeringController;
 
 
-    public EnemyStateRunAway(SteeringController steeringController)
+    public EnemyStateRunAway(WolfSteering steeringController)
     {
         SteeringController = steeringController;
     }
 
     public override void OnEnter()
     {
-        SteeringController.ChangeStearingMode(SteeringController.SteeringMode.flee);
+        SteeringController.ChangeStearingMode(WolfSteering.SteeringMode.flee);
     }
 
     public override void Execute()

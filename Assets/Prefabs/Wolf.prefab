@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 9103161162644767898}
   - component: {fileID: 1533038475147793369}
   - component: {fileID: 3736809475646125214}
-  - component: {fileID: 5422668085440250702}
   - component: {fileID: 5347540075466415361}
-  - component: {fileID: 9127524725357616648}
+  - component: {fileID: 4535187457664229002}
+  - component: {fileID: 6805454069471245821}
   m_Layer: 0
   m_Name: Wolf
   m_TagString: Untagged
@@ -36,6 +36,8 @@ Transform:
   m_Children:
   - {fileID: 2202617368262565975}
   - {fileID: 7288753967315135595}
+  - {fileID: 2394515607159154378}
+  - {fileID: 9211523176480006934}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1533038475147793369
@@ -52,9 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   endNode: {fileID: 0}
   reachDistance: 0
-  path:
-  - {fileID: 0}
-  - {fileID: 0}
+  path: []
   speed: 2
 --- !u!114 &3736809475646125214
 MonoBehaviour:
@@ -68,25 +68,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aceaae1f0a5933d43b15d3dbff7d1589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SteeringController: {fileID: 9127524725357616648}
-  enemy: {fileID: 0}
---- !u!114 &5422668085440250702
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2935967559358157461}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63a6360997fc5e5409d6033418e79827, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectionRange: 5
-  avoidForce: 10
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
+  PathFinding: {fileID: 1533038475147793369}
+  SteeringController: {fileID: 4535187457664229002}
+  enemy: {fileID: 6805454069471245821}
+  playerLOS: {fileID: 0}
+  wolfLOS: {fileID: 4692790219330674717}
+  wolfAttackLOS: {fileID: 4027113436501958509}
+  player: {fileID: 0}
+  Sheep: {fileID: 0}
 --- !u!54 &5347540075466415361
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -114,7 +103,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &9127524725357616648
+--- !u!114 &4535187457664229002
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,17 +112,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 2935967559358157461}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e26e487d6c52b145b9e1216a1363ea0, type: 3}
+  m_Script: {fileID: 11500000, guid: 58ebe3600d060c2448eb86134698c8fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxVelocity: 10
   timePrediction: 1
   mode: 0
   Playertarget: {fileID: 0}
+  PlayerRb: {fileID: 0}
   Sheeptarget: {fileID: 0}
   Sheeptargetrb: {fileID: 0}
-  obstacleAvoidance: {fileID: 0}
-  rb: {fileID: 0}
+  obstacleAvoidance: {fileID: 7200067808308811195}
+  rb: {fileID: 5347540075466415361}
+--- !u!114 &6805454069471245821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2935967559358157461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b75c8bbb98faa648bcdf24d0fe873a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineofsight: {fileID: 0}
+  enemyController: {fileID: 0}
 --- !u!1 &3196314970524864438
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,7 +147,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7288753967315135595}
-  - component: {fileID: 6169633393320431000}
+  - component: {fileID: 4692790219330674717}
   m_Layer: 0
   m_Name: LOS
   m_TagString: Untagged
@@ -160,13 +164,13 @@ Transform:
   m_GameObject: {fileID: 3196314970524864438}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2.2, y: 51.4, z: 36.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9103161162644767898}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6169633393320431000
+--- !u!114 &4692790219330674717
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,15 +179,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 3196314970524864438}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69cf0d7bb684e824ebad2f0ea63a0e0b, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e8be81bbf33682419144d2a55c02c19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   obstaclesMask:
     serializedVersion: 2
-    m_Bits: 0
-  detectionRange: 0
+    m_Bits: 128
+  detectionRange: 300
   loseplayer: 0
-  detectionAngle: 0
+  detectionAngle: 115
+  controller: {fileID: 3736809475646125214}
 --- !u!1 &4430879350946285744
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,7 +202,7 @@ GameObject:
   - component: {fileID: 5645818251557887885}
   - component: {fileID: 2591196378668311622}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -291,3 +296,103 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &5378485068480379319
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9211523176480006934}
+  - component: {fileID: 7200067808308811195}
+  m_Layer: 0
+  m_Name: Obs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9211523176480006934
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5378485068480379319}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 41, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9103161162644767898}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7200067808308811195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5378485068480379319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63a6360997fc5e5409d6033418e79827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionRange: 68.39
+  avoidForce: 14.6
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!1 &9170100147161465077
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2394515607159154378}
+  - component: {fileID: 4027113436501958509}
+  m_Layer: 0
+  m_Name: AttackLOS
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2394515607159154378
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9170100147161465077}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.2, y: 51.4, z: 36.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9103161162644767898}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4027113436501958509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9170100147161465077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e8be81bbf33682419144d2a55c02c19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstaclesMask:
+    serializedVersion: 2
+    m_Bits: 128
+  detectionRange: 58
+  loseplayer: 0
+  detectionAngle: 115
+  controller: {fileID: 0}

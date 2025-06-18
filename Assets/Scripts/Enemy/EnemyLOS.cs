@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class lineofsight : MonoBehaviour
+public class EnemyLOS : MonoBehaviour
 {
     [SerializeField] private LayerMask obstaclesMask;
 
@@ -12,7 +12,23 @@ public class lineofsight : MonoBehaviour
     public float loseplayer;
     public float detectionAngle;
 
+    public EnemyController controller;
+
     //Comprueba si el objetivo estÅEdentro del rango de visiÛn.
+
+
+    public bool seeingsomething()
+    {
+        Ray ray = new Ray();
+
+        if (Physics.Raycast(ray, out RaycastHit rayinfo, detectionRange, obstaclesMask))
+        {
+            controller.Sheep =  rayinfo.collider.gameObject;
+
+            return true;
+        }
+        return false;
+    }
     public bool CheckDistance(Transform target) 
     {
         float distance = Vector3.Distance(target.position, transform.position);
