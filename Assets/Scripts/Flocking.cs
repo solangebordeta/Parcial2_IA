@@ -7,7 +7,7 @@ public class Flocking : MonoBehaviour
 {
     private float radius = 4;
     [SerializeField] LayerMask boids;
-    [SerializeField] Seek SteeringSeek;
+    [SerializeField] Flock SteeringFlock;
     // Start is called before the first frame update
     void Start()
     {
@@ -67,7 +67,7 @@ public class Flocking : MonoBehaviour
 
             Center /= entities;
 
-        return SteeringSeek.MoveDirection();
+        return SteeringFlock.MoveDirection();
     }
 
     Vector3 alingtowards() 

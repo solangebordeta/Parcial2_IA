@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static WolfSteering;
 
 [RequireComponent(typeof(Rigidbody))]
 
@@ -40,7 +39,8 @@ public class SheepSteering : MonoBehaviour
         none = new(rb);
         flee = new(rb, WolfTransform, maxVelocity);
         evade = new(rb, WolfTargetRb, maxVelocity, timePrediction);
-        ;
+        flock = new(Playertarget,rb,PlayerRb,maxVelocity);
+        
 
         //el comp. inicial es ninguna
         currentSteering = none;
@@ -81,7 +81,6 @@ public class SheepSteering : MonoBehaviour
 
             case SteeringMode.flee:
                 currentSteering = flee;
-                break;
                 break;
             case SteeringMode.evade:
                 currentSteering = evade;
