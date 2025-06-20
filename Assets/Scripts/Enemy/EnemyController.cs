@@ -67,14 +67,13 @@ public class EnemyController : MonoBehaviour
         patrol.AddTransition(States.Chase, chase);
         patrol.AddTransition(States.RunAway, runAway);
 
-        attack.AddTransition(States.Idle, idle);
+     
         attack.AddTransition(States.Patrol, patrol);
 
-        chase.AddTransition(States.Idle, idle);
+   
         chase.AddTransition(States.Attack, attack);
         chase.AddTransition(States.Patrol, patrol);
 
-        runAway.AddTransition(States.Idle, idle);
         runAway.AddTransition(States.Patrol, patrol);
 
         fsm = new FSM<States>(patrol);
