@@ -19,11 +19,11 @@ public class EnemyStateRunAway : State<States>
 
     public override void Execute()
     {
-  
+        SteeringController.ExecuteSteering();
     }
     public override void FixedExecute()
     {
-        SteeringController.ExecuteSteering();
+        
     }
 
     public override void OnExit()

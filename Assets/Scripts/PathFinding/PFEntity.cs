@@ -6,15 +6,15 @@ public class PFEntity : MonoBehaviour
 {
     public PFNodes endNode;
     public float reachDistance;
-    public List<PFNodes> path;
+    private List<PFNodes> path;
     public float speed;
 
     public List<PFNodes> SetPath { set { path = value; } }
 
 
-    
+
     // Update is called once per frame
-    void Update()
+    public void Executepath()
     {
         if (path.Count > 0)
         {
@@ -25,9 +25,5 @@ public class PFEntity : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, reachDistance);
-    }
+  
 }

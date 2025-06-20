@@ -1,12 +1,16 @@
-﻿public class SheepFlockState : State<States>
+﻿using UnityEngine;
+
+public class SheepFlockState : State<States>
 {
     private SheepSteering controller;
     private Flocking flock;
+    private Animator animator;
 
-    public SheepFlockState(SheepSteering controller, Flocking flock)
+    public SheepFlockState(SheepSteering controller, Flocking flock,Animator animator)
     {
         this.controller = controller;
         this.flock = flock;
+        this.animator = animator;
     }
 
     public override void OnEnter()

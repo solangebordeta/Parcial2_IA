@@ -4,11 +4,12 @@ public class SheepRunState : State<States>
 {
     private SheepSteering controller;
     private GameObject wolf;
-
-    public SheepRunState(SheepSteering controller, GameObject wolf)
+    Animator animator;
+    public SheepRunState(SheepSteering controller, GameObject wolf, Animator animator)
     {
         this.controller = controller;
         this.wolf = wolf;
+        this.animator = animator;
     }
 
     public override void OnEnter()

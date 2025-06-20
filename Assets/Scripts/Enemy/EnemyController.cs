@@ -34,7 +34,6 @@ public class EnemyController : MonoBehaviour
     private void ininTree()
     {
         var patrol = new ActionTree(() => fsm.OnTransition(States.Patrol));
-        var idle = new ActionTree(() => fsm.OnTransition(States.Idle));
         var attack = new ActionTree(() => fsm.OnTransition(States.Attack));
         var chase = new ActionTree(() => fsm.OnTransition(States.Chase));
         var runAway = new ActionTree(() => fsm.OnTransition(States.RunAway));
@@ -61,14 +60,12 @@ public class EnemyController : MonoBehaviour
 
         patrol = new EnemyStatePatrol(PathFinding);
         chase = new EnemyStateChase(SteeringController,Sheep,this);
-        idle = new EnemyStateIdle(SteeringController);
         attack = new EnemyStateAttack(enemy);
         runAway = new EnemyStateRunAway(SteeringController);
+
         patrol.AddTransition(States.Idle, idle);
         patrol.AddTransition(States.Chase, chase);
-
-        idle.AddTransition(States.Patrol, patrol);
-        idle.AddTransition(States.Chase, chase);
+        patrol.AddTransition(States.RunAway, runAway);
 
         attack.AddTransition(States.Idle, idle);
         attack.AddTransition(States.Patrol, patrol);
@@ -80,19 +77,19 @@ public class EnemyController : MonoBehaviour
         runAway.AddTransition(States.Idle, idle);
         runAway.AddTransition(States.Patrol, patrol);
 
-        fsm = new FSM<States>(idle);
+        fsm = new FSM<States>(patrol);
     }
 
     bool ISbeingseen()
     {
+      
         return Vector3.Distance(this.transform.position,player.transform.position) <= playerLOS.detectionRange;
     }
     // Update is called once per frame
     void Update()
     {
-      //fsm.OnExecute();
-       // root.Execute();
-        
+      fsm.OnExecute();
+      root.Execute();
     }
 
     private void FixedUpdate()

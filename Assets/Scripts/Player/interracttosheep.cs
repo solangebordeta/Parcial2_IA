@@ -17,7 +17,7 @@ public class interracttosheep : MonoBehaviour
             if (Physics.SphereCast(this.transform.position, Rad, transform.position, out RaycastHit hit, mask))
         {
             canvas.gameObject.SetActive(true);
-            Debug.Log("viendo");
+
         }
             
           

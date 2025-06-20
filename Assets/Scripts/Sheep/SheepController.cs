@@ -10,7 +10,7 @@ public class SheepController : MonoBehaviour
 [SerializeField] Flocking flock;
 [SerializeField] lineofsight LOS;
 [SerializeField] Sheep Sheep;
-
+[SerializeField] Animator animator;
  public GameObject Wolf;
  
  SheepMoveState moveState;
@@ -36,9 +36,9 @@ public class SheepController : MonoBehaviour
     private void IninFSM()
     {
 
-       moveState = new SheepMoveState(PFEntity);
-       runState = new SheepRunState(controller,Wolf);
-       flockState = new SheepFlockState(controller,flock);
+       moveState = new SheepMoveState(PFEntity,animator);
+       runState = new SheepRunState(controller,Wolf,animator);
+       flockState = new SheepFlockState(controller,flock,animator);
 
         moveState.AddTransition(States.RunAway, runState);
         moveState.AddTransition(States.Flock, flockState);
@@ -55,6 +55,11 @@ public class SheepController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        fsm.OnExecute();
+    }
+
+    private void FixedUpdate()
+    {
+        fsm.OnFixedExecute();
     }
 }

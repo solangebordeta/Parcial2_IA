@@ -49,7 +49,7 @@ public class WolfSteering : MonoBehaviour
  
     public void ExecuteSteering() //ejecuta la logica del comportamiento
     {
-    
+        Debug.Log("se ejecuta");
         Vector3 steeringDir = currentSteering.MoveDirection();                                                                                                                                       
 
         //dirección de evasión de obstáculos
@@ -77,7 +77,6 @@ public class WolfSteering : MonoBehaviour
 
         switch (mode)
         {
-        
             case SteeringMode.flee:
                 currentSteering = flee;
                 break;

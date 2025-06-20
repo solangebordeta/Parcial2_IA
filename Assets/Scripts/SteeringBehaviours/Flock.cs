@@ -29,13 +29,12 @@ public class Flock : ISteering
 
     //protected void Move()
     //{
-     
+
     //}
 
-    //public Vector3 MoveDirection()
-    //{
-    //    if (_velocity == Vector3.zero) return;
-    //    transform.forward = _velocity;
-    //    return transform.position += _velocity * Time.deltaTime;
-    //}
+    public Vector3 MoveDirection()
+    {
+       
+        return Vector3.zero;
+    }
 }
