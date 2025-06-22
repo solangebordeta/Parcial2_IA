@@ -9,10 +9,9 @@ using System;
 public class PFManager : MonoBehaviour
 {
     public static PFManager Instance { get; private set; }
-    [SerializeField] PFEntity entity;
+    [SerializeField] PFEntity[] entities;
     [SerializeField] PFNodeGrid grid;
     [SerializeField] float distanceToTarget;
-    [SerializeField] Color startColor, endColor;
     [SerializeField] LayerMask walls;
 
     private void Awake()
@@ -22,13 +21,17 @@ public class PFManager : MonoBehaviour
     
     public void SetPath(PFNodes end)
     {
-        var startNode = grid.nodeGrid.
-            Where(x => (x.transform.position - entity.transform.position).sqrMagnitude <= entity.reachDistance * entity.reachDistance)
-               .OrderBy(x => (x.transform.position - entity.transform.position).sqrMagnitude).FirstOrDefault();
+        for (int i = 0; i < entities.Length; i++) 
+        {
+               var startNode = grid.nodeGrid.
+            Where(x => (x.transform.position - entities[i].transform.position).sqrMagnitude <= entities[i].reachDistance * entities[i].reachDistance)
+               .OrderBy(x => (x.transform.position - entities[i].transform.position).sqrMagnitude).FirstOrDefault();
 
         var path = new List<PFNodes>();       
         path = PathFinding.Astar(startNode, end, walls);
-        entity.SetPath = path;
+            entities[i].SetPath = path;
+        }
+     
     }
 
     

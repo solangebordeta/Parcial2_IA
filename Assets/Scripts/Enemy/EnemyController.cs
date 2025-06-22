@@ -59,8 +59,8 @@ public class EnemyController : MonoBehaviour
     {
 
         patrol = new EnemyStatePatrol(PathFinding);
-        chase = new EnemyStateChase(SteeringController,Sheep,this);
-        attack = new EnemyStateAttack(enemy);
+        chase = new EnemyStateChase(SteeringController,this);
+        attack = new EnemyStateAttack(enemy,Sheep,this);
         runAway = new EnemyStateRunAway(SteeringController);
 
         patrol.AddTransition(States.Idle, idle);
@@ -73,6 +73,7 @@ public class EnemyController : MonoBehaviour
    
         chase.AddTransition(States.Attack, attack);
         chase.AddTransition(States.Patrol, patrol);
+        chase.AddTransition(States.RunAway, runAway);
 
         runAway.AddTransition(States.Patrol, patrol);
 
@@ -81,14 +82,15 @@ public class EnemyController : MonoBehaviour
 
     bool ISbeingseen()
     {
-      
-        return Vector3.Distance(this.transform.position,player.transform.position) <= playerLOS.detectionRange;
+
+        return playerLOS.CheckDistance(this.transform);
     }
     // Update is called once per frame
     void Update()
     {
       fsm.OnExecute();
       root.Execute();
+        wolfLOS.seeingsomething();
     }
 
     private void FixedUpdate()

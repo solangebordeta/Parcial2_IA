@@ -8,7 +8,7 @@ public class SheepController : MonoBehaviour
 [SerializeField] PFEntity PFEntity;
 [SerializeField]SheepSteering controller;
 [SerializeField] Flocking flock;
-[SerializeField] lineofsight LOS;
+[SerializeField] SheepLOS LOS;
 [SerializeField] Sheep Sheep;
 [SerializeField] Animator animator;
  public GameObject Wolf;

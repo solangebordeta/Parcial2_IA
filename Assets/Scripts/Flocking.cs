@@ -9,16 +9,7 @@ public class Flocking : MonoBehaviour
     [SerializeField] LayerMask boids;
     [SerializeField] Flock SteeringFlock;
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     void Flock()
     {
         Vector3 FlForce = Separation() + Cohesion() + alingtowards();

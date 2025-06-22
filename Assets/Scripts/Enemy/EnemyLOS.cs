@@ -19,14 +19,28 @@ public class EnemyLOS : MonoBehaviour
 
     public bool seeingsomething()
     {
-        Ray ray = new Ray();
 
-        if (Physics.Raycast(ray, out RaycastHit rayinfo, detectionRange, obstaclesMask))
-        {
+        Collider[] hit = Physics.OverlapSphere(transform.position, detectionRange, obstaclesMask);
+    
+        for (int i = 0; i < hit.Length; i++)
+            {
+            Debug.DrawRay(transform.position, hit[i].transform.position - transform.position,Color.magenta);
+            if (Physics.Raycast(transform.position, hit[i].transform.position - transform.position, detectionRange,obstaclesMask))
+            {
+              if ( hit[i].CompareTag("Sheep") && controller.Sheep == null)
 
-            if (rayinfo.collider.gameObject.CompareTag("Sheep")) controller.Sheep = rayinfo.collider.gameObject;
+                {
+                    controller.Sheep = hit[i].transform.parent.gameObject;
 
-            return true;
+                    return true;
+                }
+       
+            }
+            else
+            {
+                return false;
+            }
+
         }
         return false;
     }
@@ -66,7 +80,7 @@ public class EnemyLOS : MonoBehaviour
         // Dibuja una esfera que representa el rango de detección.
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(transform.position, detectionRange);
-
+        
         // Dibuja lú‹eas que representan el ángulo de visión.
         Gizmos.color = Color.red;
         Gizmos.DrawRay(transform.position, Quaternion.Euler(0, detectionAngle / 2, 0) * transform.forward * detectionRange);

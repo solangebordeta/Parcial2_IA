@@ -47,7 +47,7 @@ MonoBehaviour:
   obstaclesMask:
     serializedVersion: 2
     m_Bits: 128
-  detectionRange: 81.8
+  detectionRange: 82.7
   loseplayer: 0
   detectionAngle: 320
 --- !u!1 &6609499746178777153
@@ -232,9 +232,10 @@ MonoBehaviour:
   PFEntity: {fileID: 3608065439823100387}
   controller: {fileID: 5209150520970102598}
   flock: {fileID: 8809700921450316865}
-  LOS: {fileID: 3238303432994451896}
+  LOS: {fileID: 0}
   Sheep: {fileID: 5817547521059542822}
-  wolf: {fileID: 0}
+  animator: {fileID: 0}
+  Wolf: {fileID: 0}
 --- !u!54 &2303425046122756948
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -276,7 +277,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   endNode: {fileID: 0}
   reachDistance: 0
-  path: []
   speed: 1
 --- !u!114 &5209150520970102598
 MonoBehaviour:
