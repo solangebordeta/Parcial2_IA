@@ -14,8 +14,8 @@ public class WolfSteering : MonoBehaviour
     [Header("References")]
     public Transform Playertarget;
     public Rigidbody PlayerRb;
-    public Transform Sheeptarget;
-    public Rigidbody Sheeptargetrb;
+    public Transform Sheeptarget = null;
+    public Rigidbody Sheeptargetrb = null;
     public ObstacleAvoidance obstacleAvoidance; //(Se arrastra el script desde el inspector)
     private ISteering currentSteering;
     public Rigidbody rb;
@@ -52,7 +52,7 @@ public class WolfSteering : MonoBehaviour
 
         Vector3 steeringDir = currentSteering.MoveDirection();                                                                                                                                       
 
-        //dirección de evasión de obstáculos
+        //direccion de evasión de obstaculos
         Vector3 avoidDir = obstacleAvoidance ? obstacleAvoidance.Avoid() : Vector3.zero;
 
         //suma de ambas fuerzas

@@ -22,12 +22,10 @@ public class EnemyStateChase : State<States>
     {
         target = enemcontroller.Sheep;
 
-        steeringController.Sheeptarget = target.transform.parent;
-        steeringController.Sheeptargetrb = target.GetComponentInParent<Rigidbody>();
-        Debug.Log(steeringController.Sheeptargetrb);
+        steeringController.Sheeptarget = target.transform;
+        steeringController.Sheeptargetrb = enemcontroller.Sheep.GetComponent<Rigidbody>();
+
         steeringController.ChangeStearingMode(WolfSteering.SteeringMode.persuit);
-
-
     }
     public override void FixedExecute()
     {
