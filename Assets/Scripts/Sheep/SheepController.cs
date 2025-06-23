@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class SheepController : MonoBehaviour
 {
@@ -52,6 +53,30 @@ public class SheepController : MonoBehaviour
         fsm = new FSM<States>();
 
     }
+
+    /*private void DoTree()
+    {
+        if (Wolf.transform.position < 5) //si el enemigo esta cerca
+        {
+            //salgo corriendo
+            fsm.OnTransition(States.RunAway);
+        }
+        else
+        {
+            if (Vector3.Distance(player.position, transform.position) < 5) //si el jugador esta cerca
+            {
+                //lo sigo
+                fsm.OnTransition(States.Flock)
+            }
+            else
+            {
+                //me quedo en mi lugar
+                Debug.Log("me quedo en mi lugar");
+            }
+        }
+
+    }*/
+
     // Update is called once per frame
     void Update()
     {
