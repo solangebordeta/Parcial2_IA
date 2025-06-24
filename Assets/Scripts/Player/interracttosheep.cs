@@ -8,14 +8,14 @@ public class interracttosheep : MonoBehaviour
 {
     public  LayerMask mask;
     float distance = 10;
-    [SerializeField] LayerMask MASk;
 
     [SerializeField] Canvas canvas;
     public void Interact()
     {
-        Debug.DrawRay(transform.position, transform.forward,Color.cyan);
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, distance, MASk))
+      
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, distance, mask))
         {
+            Debug.DrawRay(transform.position, transform.forward, Color.cyan);
             Debug.Log("funca");
 
             canvas.gameObject.SetActive(true);

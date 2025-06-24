@@ -29,12 +29,12 @@ public class PathFindingMovement : MonoBehaviour
 
     public void CheckForCurrentNode()
     {
-        if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(pFNodesAllRoute[currentNodeRoute].transform.position.x, 0, pFNodesAllRoute[currentNodeRoute].transform.position.z)) <= distanceNodeArrival)
+        if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(pFNodesAllRoute[currentNodeRoute].transform.position.x, 0, pFNodesAllRoute[currentNodeRoute ].transform.position.z)) <= distanceNodeArrival)
         {
             if (currentNodeRoute < pFNodesAllRoute.Count - 1)
             {
                 currentNodeRoute++;
-                currentNodeGoingNow = pFNodesAllRoute [currentNodeRoute].transform;
+                currentNodeGoingNow = pFNodesAllRoute [currentNodeRoute -1].transform;
             }
         }
     }

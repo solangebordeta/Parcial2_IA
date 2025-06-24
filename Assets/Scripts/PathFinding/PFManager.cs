@@ -4,6 +4,7 @@ using System.IO;
 using UnityEngine;
 using System.Linq;
 using System;
+using UnityEngine.VFX;
 public class PFManager : MonoBehaviour
 {
     public static PFManager Instance { get; private set; }
@@ -19,7 +20,12 @@ public class PFManager : MonoBehaviour
     {
         Instance = this;
     }
-    
+
+    private void Start()
+    {
+        
+    }
+
     public void SetPath(PFNodes end)
     {
         for (int i = 0; i < entities.Length; i++) 
@@ -35,16 +41,4 @@ public class PFManager : MonoBehaviour
      
     }
 
-    public void SetPathSingle(PathFindingMovement entity, PFNodes end)
-    {
-        var startNode = grid.nodeGrid
-            .Where(x => (x.transform.position - entity.transform.position).sqrMagnitude <= entity.distanceNodeArrival * entity.distanceNodeArrival)
-            .OrderBy(x => (x.transform.position - entity.transform.position).sqrMagnitude)
-            .FirstOrDefault();
-
-        if (startNode == null) return;
-
-        var path = PathFinding.Astar(startNode, end, walls);
-        entity.pFNodesStartAndEnd = path;
-    }
 }

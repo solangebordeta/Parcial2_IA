@@ -22,12 +22,12 @@ public class EnemyStatePatrol : State<States>
 
     public override void Execute()
     {
-     pathFindingEnemyPatrol.CheckForCurrentNode();
+        pathFindingEnemyPatrol.CheckForCurrentNode();
     }
 
     public override void FixedExecute()
     {
-   wolfSteering.ExecuteSteering();
+    wolfSteering.ExecuteSteering();
     }
 
     public override void OnExit() { }

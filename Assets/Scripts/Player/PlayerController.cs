@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] int speed = 10;
-
-  public void Movement( Rigidbody rigidbody)
+    [SerializeField] float movespeed = 10;
+    [SerializeField] Rigidbody rb;
+    Vector3 movement;
+  public void Movement()
     {
-        Rigidbody rb = rigidbody;
-        float horiontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-
-
-        Vector3 movement = new Vector3 (horiontalInput, 0f, verticalInput) * speed;
-        rb.MovePosition (rb.position + movement * Time.fixedDeltaTime);
-        rb.MoveRotation (Quaternion.LookRotation(movement));
+      
+        movement.x = Input.GetAxis("Horizontal");
+      movement.z = Input.GetAxis("Vertical");
+        rb.MovePosition (rb.position + movement * movespeed * Time.fixedDeltaTime);
+        transform.rotation = Quaternion.identity;
     }
 
 

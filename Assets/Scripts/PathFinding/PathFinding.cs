@@ -17,7 +17,6 @@ public class PathFinding
         while (!frontier.IsEmpty)
         {
             PFNodes currentInSearch = frontier.Dequeue();
-            currentInSearch.Color = Color.Lerp(Color.yellow, Color.red, currentInSearch.Cost / 5);
 
             if (currentInSearch == end)
             {

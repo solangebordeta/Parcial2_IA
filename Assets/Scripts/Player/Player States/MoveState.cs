@@ -23,7 +23,7 @@ internal class MoveState : State<States>
     }
     public override void FixedExecute()
     {
-        controller.Movement(rb);
+        controller.Movement();
     }
     public override void OnExit() {  }
 }

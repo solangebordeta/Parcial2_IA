@@ -2266,6 +2266,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 2701213819607821471, guid: 47aa604360e9385439170459ca634bf8, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 392994376}
+    - target: {fileID: 2701213819607821471, guid: 47aa604360e9385439170459ca634bf8, type: 3}
       propertyPath: speed
       value: 200
       objectReference: {fileID: 0}
@@ -2316,6 +2320,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 744281770197731532, guid: 47aa604360e9385439170459ca634bf8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 392994380}
+    - targetCorrespondingSourceObject: {fileID: 744281770197731532, guid: 47aa604360e9385439170459ca634bf8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 392994385}
   m_SourcePrefab: {fileID: 100100000, guid: 47aa604360e9385439170459ca634bf8, type: 3}
 --- !u!1001 &310982340
 PrefabInstance:
@@ -2816,6 +2823,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &392994385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392994373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf3e4ec45c5bd4d46ab872126f0829aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &393322797
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3352,6 +3371,10 @@ PrefabInstance:
     - target: {fileID: 5881670392166310265, guid: f8407bd803a6c9e44ad0258505263f99, type: 3}
       propertyPath: mask.m_Bits
       value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 5881670392166310265, guid: f8407bd803a6c9e44ad0258505263f99, type: 3}
+      propertyPath: distanceNodeArrival
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5881670392166310265, guid: f8407bd803a6c9e44ad0258505263f99, type: 3}
       propertyPath: pFNodesStartAndEnd.Array.size
@@ -4325,9 +4348,9 @@ MonoBehaviour:
   - {fileID: 1905631101}
   - {fileID: 1004462158}
   - {fileID: 1319005723}
-  width: 0
+  width: 1
   height: 0
-  distance: 0
+  distance: 2
 --- !u!1001 &561061735
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5288,11 +5311,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entities: []
-  grid: {fileID: 0}
-  distanceToTarget: 0
+  grid: {fileID: 728656073}
+  distanceToTarget: 4.9
   walls:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
 --- !u!4 &728656075
 Transform:
   m_ObjectHideFlags: 0
@@ -8666,6 +8689,10 @@ PrefabInstance:
       value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 5881670392166310265, guid: f8407bd803a6c9e44ad0258505263f99, type: 3}
+      propertyPath: distanceNodeArrival
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5881670392166310265, guid: f8407bd803a6c9e44ad0258505263f99, type: 3}
       propertyPath: pFNodesStartAndEnd.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -10738,6 +10765,10 @@ PrefabInstance:
     - target: {fileID: 5881670392166310265, guid: f8407bd803a6c9e44ad0258505263f99, type: 3}
       propertyPath: mask.m_Bits
       value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 5881670392166310265, guid: f8407bd803a6c9e44ad0258505263f99, type: 3}
+      propertyPath: distanceNodeArrival
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5881670392166310265, guid: f8407bd803a6c9e44ad0258505263f99, type: 3}
       propertyPath: pFNodesStartAndEnd.Array.size
@@ -13345,6 +13376,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 806092064}
     m_Modifications:
+    - target: {fileID: -704169759567050999, guid: 07b1e37134cd7cb4f8cdae52c5fde28e, type: 3}
+      propertyPath: neighbors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1481660657923442127, guid: 07b1e37134cd7cb4f8cdae52c5fde28e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1170
@@ -14415,6 +14450,10 @@ PrefabInstance:
     - target: {fileID: 5881670392166310265, guid: f8407bd803a6c9e44ad0258505263f99, type: 3}
       propertyPath: mask.m_Bits
       value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 5881670392166310265, guid: f8407bd803a6c9e44ad0258505263f99, type: 3}
+      propertyPath: distanceNodeArrival
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5881670392166310265, guid: f8407bd803a6c9e44ad0258505263f99, type: 3}
       propertyPath: pFNodesStartAndEnd.Array.size
