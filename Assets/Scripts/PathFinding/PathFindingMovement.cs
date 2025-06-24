@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PathFindingEnemyPatrol : MonoBehaviour
+public class PathFindingMovement : MonoBehaviour
 {
     [SerializeField] List<PFNodes> pFNodesStartAndEnd;
     [SerializeField] LayerMask mask;

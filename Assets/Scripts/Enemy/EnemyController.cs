@@ -8,7 +8,7 @@ using static UnityEngine.EventSystems.EventTrigger;
 public class EnemyController : MonoBehaviour
 {
 
-    [SerializeField] PathFindingEnemyPatrol PathFinding;
+    [SerializeField] PathFindingMovement PathFinding;
     [SerializeField] private WolfSteering SteeringController;
     [SerializeField] WolfEnemy enemy;
     [SerializeField] lineofsight playerLOS;

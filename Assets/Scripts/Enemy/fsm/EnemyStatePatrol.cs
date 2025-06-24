@@ -2,17 +2,15 @@ using UnityEngine;
 
 public class EnemyStatePatrol : State<States>
 {
-    PathFindingEnemyPatrol pathFindingEnemyPatrol;
+    PathFindingMovement pathFindingEnemyPatrol;
     WolfSteering wolfSteering;
 
-    float patrolTimer;
-    float patrolCooldown = 5f;
 
-    public EnemyStatePatrol(PathFindingEnemyPatrol pathFindingEnemyPatrol,WolfSteering steering)
+
+    public EnemyStatePatrol(PathFindingMovement pathFindingEnemyPatrol,WolfSteering steering)
     {
     wolfSteering = steering;
      this.pathFindingEnemyPatrol = pathFindingEnemyPatrol;
-
 
     }
 

@@ -3,29 +3,31 @@
 public class SheepMoveState : State<States>
 {
     Animator animator;
-    PFEntity grid;
-    float repathTimer;
-    float repathCooldown = 3f;
+    PathFindingMovement grid;
+    SheepSteering steering;
 
-    public SheepMoveState(PFEntity pfNodeGrid, Animator animator)
+
+    public SheepMoveState(PathFindingMovement pfNodeGrid, Animator animator,SheepSteering steering)
     {
         this.grid = pfNodeGrid;
         this.animator = animator;
+        this.steering = steering;
     }
 
     public override void OnEnter()
     {
-  
+        steering.ChangeStearingMode(SheepSteering.SteeringMode.move);
+        steering.changeDirection(grid.currentNodeGoingNow);
     }
 
     public override void Execute()
     {
-      
+        grid.CheckForCurrentNode();
     }
 
     public override void FixedExecute()
     {
-  
+  steering.ExecuteSteering();
     }
 
     public override void OnExit()

@@ -23,21 +23,28 @@ public class SheepSteering : MonoBehaviour
     Flee flee;
     Flock flock;
     None none;
-
+    Seek seek;
 
     public enum SteeringMode
     {
         flee,
         follow,
         None,
+        move,
     }
     void Start()
     {
+        seek = new(this.rb, null, 10);
+        flee = new(Target, maxVelocity);
         currentSteering = none;
     }
 
- 
-  
+    public void changeDirection(Transform newtarget)
+    {
+        seek.target = newtarget;
+    }
+
+
     public void ExecuteSteering() //ejecuta la logica del comportamiento
     {
 
@@ -73,8 +80,11 @@ public class SheepSteering : MonoBehaviour
                 currentSteering = flee;
                 break;
             case SteeringMode.follow:
-                flee = new(Target, maxVelocity);
+       
                 currentSteering = flock;
+                break;
+            case SteeringMode.move:
+                currentSteering = seek;
                 break;
             case SteeringMode.None: 
                 currentSteering = null; break;

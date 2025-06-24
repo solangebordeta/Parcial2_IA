@@ -7,7 +7,7 @@ using System;
 public class PFManager : MonoBehaviour
 {
     public static PFManager Instance { get; private set; }
-    [SerializeField] PFEntity[] entities;
+    [SerializeField] PathFindingMovement[] entities;
     [SerializeField] PFNodeGrid grid;
     [SerializeField] float distanceToTarget;
     [SerializeField] LayerMask walls;
@@ -35,7 +35,7 @@ public class PFManager : MonoBehaviour
      
     }
 
-    public void SetPathSingle(PFEntity entity, PFNodes end)
+    public void SetPathSingle(PathFindingMovement entity, PFNodes end)
     {
         var startNode = grid.nodeGrid
             .Where(x => (x.transform.position - entity.transform.position).sqrMagnitude <= entity.reachDistance * entity.reachDistance)

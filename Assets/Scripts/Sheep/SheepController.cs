@@ -7,7 +7,7 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class SheepController : MonoBehaviour
 {
-    [SerializeField] PFEntity PFNodeGrid;
+    [SerializeField] PathFindingMovement PF;
     [SerializeField] SheepSteering controller;
     [SerializeField] SheepLOS LOS;
     [SerializeField] Sheep Sheep;
@@ -41,7 +41,7 @@ public class SheepController : MonoBehaviour
     private void IninFSM()
     {
 
-       moveState = new SheepMoveState(PFNodeGrid, animator);
+       moveState = new SheepMoveState(PF, animator,controller);
        runState = new SheepRunState( this,controller,animator);
        flockState = new SheepFlockState(controller,animator);
 

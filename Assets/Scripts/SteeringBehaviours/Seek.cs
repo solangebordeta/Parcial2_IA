@@ -25,8 +25,4 @@ public class Seek : ISteering
         return directionForce;
     }
 
-    public void changeDirection(Transform newtarget)
-    {
-        target = newtarget;
-    }
 }
