@@ -11,8 +11,6 @@ public class PFEntity : MonoBehaviour
 
     public List<PFNodes> SetPath { set { path = value; } }
 
-
-
     // Update is called once per frame
     public void Executepath()
     {
@@ -24,6 +22,4 @@ public class PFEntity : MonoBehaviour
                 path.RemoveAt(0);
         }
     }
-
-  
 }

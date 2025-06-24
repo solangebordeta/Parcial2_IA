@@ -1,44 +1,47 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
+﻿using UnityEngine;
 
 public class EnemyStateChase : State<States>
 {
+    private PFEntity pathEntity;
+    private EnemyController controller;
+    private GameObject sheep;
 
-    WolfSteering steeringController;
-    GameObject target;
-    EnemyController enemcontroller; 
-    public EnemyStateChase(WolfSteering controller,EnemyController enemyController)
+    public EnemyStateChase(PFEntity pathEntity, EnemyController controller)
     {
-        this.steeringController = controller;
-        this.enemcontroller = enemyController;
-        }
-
+        this.pathEntity = pathEntity;
+        this.controller = controller;
+    }
 
     public override void OnEnter()
     {
-        target = enemcontroller.Sheep;
+        sheep = controller.Sheep;
 
-        steeringController.Sheeptarget = target.transform;
-        steeringController.Sheeptargetrb = enemcontroller.Sheep.GetComponent<Rigidbody>();
-
-        steeringController.ChangeStearingMode(WolfSteering.SteeringMode.persuit);
+        PFNodes sheepNode = GetClosestNode(sheep.transform.position);
+        PFManager.Instance.SetPathSingle(pathEntity, sheepNode);
     }
+
     public override void FixedExecute()
     {
-       
-        steeringController.ExecuteSteering();
+        pathEntity.Executepath();
     }
-    
-    
 
-    public override void OnExit()
+    PFNodes GetClosestNode(Vector3 pos)
     {
-        enemcontroller.Sheep = null;
-        steeringController.Sheeptarget =  null;
-        steeringController.Sheeptargetrb = null;
+        var grid = PFManager.Instance.Grid;
+        PFNodes closest = null;
+        float minDist = float.MaxValue;
+        foreach (var node in grid.nodeGrid)
+        {
+            float dist = Vector3.Distance(pos, node.transform.position);
+            if (dist < minDist && !node.Blocked)
+            {
+                minDist = dist;
+                closest = node;
+            }
+        }
+        return closest;
     }
 }
+
+
+

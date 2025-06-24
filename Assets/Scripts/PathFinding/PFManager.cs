@@ -14,6 +14,9 @@ public class PFManager : MonoBehaviour
     [SerializeField] float distanceToTarget;
     [SerializeField] LayerMask walls;
 
+    public PFNodeGrid Grid => grid;
+
+
     private void Awake()
     {
         Instance = this;
@@ -34,8 +37,16 @@ public class PFManager : MonoBehaviour
      
     }
 
-    
-    
+    public void SetPathSingle(PFEntity entity, PFNodes end)
+    {
+        var startNode = grid.nodeGrid
+            .Where(x => (x.transform.position - entity.transform.position).sqrMagnitude <= entity.reachDistance * entity.reachDistance)
+            .OrderBy(x => (x.transform.position - entity.transform.position).sqrMagnitude)
+            .FirstOrDefault();
 
+        if (startNode == null) return;
 
+        var path = PathFinding.Astar(startNode, end, walls);
+        entity.SetPath = path;
+    }
 }
