@@ -18,10 +18,7 @@ public class SheepRunState : State<States>
     public override void OnEnter()
     {
         wolf = controller.Wolf;
-      
-;
-        sheepSteering.WolfTransform = wolf.gameObject.transform;
-        sheepSteering.WolfTargetRb = wolf.gameObject.GetComponent<Rigidbody>();
+        sheepSteering.Target = wolf;
         sheepSteering.ChangeStearingMode(SheepSteering.SteeringMode.flee);
     }
 
@@ -33,10 +30,8 @@ public class SheepRunState : State<States>
 
     public override void OnExit()
     {
-        wolf = null; 
-        controller.Wolf = null;
-        sheepSteering.WolfTransform = null;
-        sheepSteering.WolfTargetRb = null;
+   wolf = null;
+   controller.Wolf = null;
     }
 }
 

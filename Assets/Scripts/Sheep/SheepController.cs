@@ -9,7 +9,6 @@ public class SheepController : MonoBehaviour
 {
     [SerializeField] PFEntity PFNodeGrid;
     [SerializeField] SheepSteering controller;
-    [SerializeField] Flocking flock;
     [SerializeField] SheepLOS LOS;
     [SerializeField] Sheep Sheep;
     [SerializeField] Animator animator;
@@ -19,7 +18,6 @@ public class SheepController : MonoBehaviour
     SheepMoveState moveState;
     SheepRunState runState;
     SheepFlockState flockState;
-
     FSM<States> fsm;
     ItreeNode root;
 
@@ -45,7 +43,7 @@ public class SheepController : MonoBehaviour
 
        moveState = new SheepMoveState(PFNodeGrid, animator);
        runState = new SheepRunState( this,controller,animator);
-       flockState = new SheepFlockState(controller,flock,animator);
+       flockState = new SheepFlockState(controller,animator);
 
         moveState.AddTransition(States.RunAway, runState);
         moveState.AddTransition(States.Flock, flockState);
@@ -69,6 +67,7 @@ public class SheepController : MonoBehaviour
     void Update()
     {
         fsm.OnExecute();
+        root.Execute();
     }
 
     private void FixedUpdate()

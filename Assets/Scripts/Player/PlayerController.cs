@@ -5,8 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] int speed = 10;
-  
- 
+
   public void Movement( Rigidbody rigidbody)
     {
         Rigidbody rb = rigidbody;
@@ -18,6 +17,8 @@ public class PlayerController : MonoBehaviour
         rb.MoveRotation (Quaternion.LookRotation(movement));
     }
 
+
+  
  
 
     

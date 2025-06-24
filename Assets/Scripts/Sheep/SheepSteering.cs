@@ -14,15 +14,13 @@ public class SheepSteering : MonoBehaviour
     [Header("References")]
     public Transform Playertarget;
     public Rigidbody PlayerRb;
-    public Transform WolfTransform;
-    public Rigidbody WolfTargetRb;
+    public GameObject Target;
     public ObstacleAvoidance obstacleAvoidance; //(Se arrastra el script desde el inspector)
     private ISteering currentSteering;
     public Rigidbody rb;
     private Vector3 finalForce;
 
     Flee flee;
-    Evade evade;
     Flock flock;
     None none;
 
@@ -35,12 +33,7 @@ public class SheepSteering : MonoBehaviour
     }
     void Start()
     {
-        flee = new(rb, WolfTransform, maxVelocity);
-        flock = new(Playertarget,rb,PlayerRb,maxVelocity);
-        
-
-        //el comp. inicial es ninguna
-        currentSteering = null;
+        currentSteering = none;
     }
 
  
@@ -80,6 +73,7 @@ public class SheepSteering : MonoBehaviour
                 currentSteering = flee;
                 break;
             case SteeringMode.follow:
+                flee = new(Target, maxVelocity);
                 currentSteering = flock;
                 break;
             case SteeringMode.None: 

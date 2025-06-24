@@ -62,7 +62,7 @@ public class EnemyController : MonoBehaviour
     {
 
         patrol = new EnemyStatePatrol(PathFinding);
-        chase = new EnemyStateChase(this.gameObject, this);
+        chase = new EnemyStateChase(SteeringController, this);
         attack = new EnemyStateAttack(this.gameObject,Sheep,this);
         runAway = new EnemyStateRunAway(SteeringController);
 

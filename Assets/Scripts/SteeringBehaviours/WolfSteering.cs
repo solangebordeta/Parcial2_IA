@@ -14,8 +14,7 @@ public class WolfSteering : MonoBehaviour
     [Header("References")]
     public Transform Playertarget;
     public Rigidbody PlayerRb;
-    public Transform Sheeptarget = null;
-    public Rigidbody Sheeptargetrb = null;
+    public GameObject Target;
     public ObstacleAvoidance obstacleAvoidance; //(Se arrastra el script desde el inspector)
     private ISteering currentSteering;
     public Rigidbody rb;
@@ -38,8 +37,8 @@ public class WolfSteering : MonoBehaviour
     {
         //se crean los objetos de cada comportameinto con sus dependencias
         none = new(rb);
-        flee = new(rb, Playertarget, maxVelocity);
-        persuit = new(rb, Sheeptargetrb, maxVelocity, timePrediction);
+        flee = new(Target, maxVelocity);
+        persuit = new(rb, Target, maxVelocity, timePrediction);
         evade = new(rb, PlayerRb, maxVelocity, timePrediction);
 ;
       
@@ -78,9 +77,11 @@ public class WolfSteering : MonoBehaviour
         switch (mode)
         {
             case SteeringMode.flee:
+                flee = new(Target, maxVelocity);
                 currentSteering = flee;
                 break;
             case SteeringMode.persuit:
+                persuit = new(rb, Target, maxVelocity, timePrediction);
                 currentSteering = persuit;
                 break;
             case SteeringMode.evade:

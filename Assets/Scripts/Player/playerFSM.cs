@@ -41,6 +41,7 @@ public class playerFSM : MonoBehaviour
         }
         FSM.OnExecute();
         sheepinteract.Interact();
+       
     }
 
     private void FixedUpdate()

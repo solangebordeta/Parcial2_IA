@@ -30,9 +30,7 @@ public class EnemyStateAttack : State<States>
 
     public override void OnExit() 
     {
-        var steering = Enemy.GetComponent<WolfSteering>();
-        steering.Sheeptarget = null;
-        steering.Sheeptargetrb = null;
+
         Controller.Sheep = null;
     }
 }
