@@ -129,7 +129,9 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 64
-  Rad: 2
+  MASk:
+    serializedVersion: 2
+    m_Bits: 0
   canvas: {fileID: 770969628903960041}
 --- !u!1 &1839034216794299688
 GameObject:
@@ -399,6 +401,7 @@ PrefabInstance:
     - {fileID: 7907131556996863373, guid: 28ead1a2744ea9749a681b16e7318405, type: 3}
     - {fileID: 2782076996154067676, guid: 28ead1a2744ea9749a681b16e7318405, type: 3}
     - {fileID: 2248194945839953564, guid: 28ead1a2744ea9749a681b16e7318405, type: 3}
+    - {fileID: 1031525432926929638, guid: 28ead1a2744ea9749a681b16e7318405, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2263925595652001396, guid: 28ead1a2744ea9749a681b16e7318405, type: 3}
       insertIndex: -1
