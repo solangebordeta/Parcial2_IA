@@ -4,8 +4,6 @@ using System.IO;
 using UnityEngine;
 using System.Linq;
 using System;
-
-
 public class PFManager : MonoBehaviour
 {
     public static PFManager Instance { get; private set; }

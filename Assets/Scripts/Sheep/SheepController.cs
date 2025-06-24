@@ -7,7 +7,7 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class SheepController : MonoBehaviour
 {
-    [SerializeField] PFEntity PFEntity;
+    [SerializeField] PFNodeGrid PFNodeGrid;
     [SerializeField] SheepSteering controller;
     [SerializeField] Flocking flock;
     [SerializeField] SheepLOS LOS;
@@ -43,8 +43,8 @@ public class SheepController : MonoBehaviour
     private void IninFSM()
     {
 
-       moveState = new SheepMoveState(PFEntity,animator);
-       runState = new SheepRunState(PFEntity, Wolf, animator);
+       moveState = new SheepMoveState(PFNodeGrid, animator);
+       runState = new SheepRunState(PFNodeGrid, Wolf, animator);
        flockState = new SheepFlockState(controller,flock,animator);
 
         moveState.AddTransition(States.RunAway, runState);

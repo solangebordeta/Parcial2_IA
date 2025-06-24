@@ -2,13 +2,13 @@
 
 public class SheepRunState : State<States>
 {
-    private PFEntity pathEntity;
+    private PFNodeGrid grid;
     private GameObject wolf;
     private Animator animator;
 
-    public SheepRunState(PFEntity pf, GameObject wolf, Animator anim)
+    public SheepRunState(PFNodeGrid pf, GameObject wolf, Animator anim)
     {
-        this.pathEntity = pf;
+        this.grid = pf;
         this.wolf = wolf;
         this.animator = anim;
     }
@@ -18,12 +18,12 @@ public class SheepRunState : State<States>
         animator.SetTrigger("Run");
 
         PFNodes farthestNode = GetFarthestNode(wolf.transform.position);
-        PFManager.Instance.SetPathSingle(pathEntity, farthestNode);
+        PFManager.Instance.SetPathSingle(grid, farthestNode);
     }
 
     public override void FixedExecute()
     {
-        pathEntity.Executepath();
+        grid.Executepath();
     }
 
     PFNodes GetFarthestNode(Vector3 fromPos)
