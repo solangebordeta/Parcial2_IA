@@ -2,6 +2,7 @@ using NUnit.Framework.Constraints;
 using UnityEngine;
 using static WolfSteering;
 using static UnityEngine.GraphicsBuffer;
+using static Cinemachine.CinemachineTargetGroup;
 
 [RequireComponent(typeof(Rigidbody))]
 public class WolfSteering : MonoBehaviour
@@ -25,22 +26,24 @@ public class WolfSteering : MonoBehaviour
     Persuit persuit;
     Evade evade;
     None none;
+    Seek seek;
     public enum SteeringMode
     {
         flee,
         persuit,
         evade,
         None,
+        Move,
     }
 
-    void Start()
+ private void Start()
     {
         //se crean los objetos de cada comportameinto con sus dependencias
         none = new(rb);
         flee = new(Target, maxVelocity);
         persuit = new(rb, Target, maxVelocity, timePrediction);
         evade = new(rb, PlayerRb, maxVelocity, timePrediction);
-;
+;       seek = new(this.rb, null, 10);
       
         //el comp. inicial es ninguna
         currentSteering = none;
@@ -70,6 +73,11 @@ public class WolfSteering : MonoBehaviour
       
     }
 
+    public void changeDirection(Transform newtarget)
+    {
+        seek.target = newtarget;
+    }
+
     public void ChangeStearingMode(SteeringMode mode) //cambia el comportamiento segun el modo
     {
         this.mode = mode;
@@ -89,6 +97,8 @@ public class WolfSteering : MonoBehaviour
                 break;
                 case SteeringMode.None: currentSteering = none; 
                 break;
+            case SteeringMode.Move:
+                currentSteering = seek; break;
 
         }
     }

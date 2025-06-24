@@ -8,7 +8,7 @@ using static UnityEngine.EventSystems.EventTrigger;
 public class EnemyController : MonoBehaviour
 {
 
-    [SerializeField] PFEntity PathFinding;
+    [SerializeField] PathFindingEnemyPatrol PathFinding;
     [SerializeField] private WolfSteering SteeringController;
     [SerializeField] WolfEnemy enemy;
     [SerializeField] lineofsight playerLOS;
@@ -61,7 +61,7 @@ public class EnemyController : MonoBehaviour
     private void IninFSM()
     {
 
-        patrol = new EnemyStatePatrol(PathFinding);
+        patrol = new EnemyStatePatrol(PathFinding,SteeringController);
         chase = new EnemyStateChase(SteeringController, this);
         attack = new EnemyStateAttack(this.gameObject,Sheep,this);
         runAway = new EnemyStateRunAway(SteeringController);

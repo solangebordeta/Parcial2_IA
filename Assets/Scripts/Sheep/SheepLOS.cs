@@ -21,11 +21,8 @@ public class SheepLOS : MonoBehaviour
     {
 
         Collider[] hit = Physics.OverlapSphere(transform.position, detectionRange, obstaclesMask);
-        Debug.Log(hit.Length);
         for (int i = 0; i < hit.Length; i++)
         {
-         
-            Debug.DrawRay(transform.position, hit[i].transform.position - transform.position, Color.magenta);
             if (Physics.Raycast(transform.position, hit[i].transform.position - transform.position, detectionRange, obstaclesMask))
             {
                 if (hit[i].CompareTag("Wolf") && controller.Wolf == null)

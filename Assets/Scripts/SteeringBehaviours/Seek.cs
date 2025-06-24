@@ -24,4 +24,9 @@ public class Seek : ISteering
         directionForce = Vector3.ClampMagnitude(directionForce, maxVelocity);
         return directionForce;
     }
+
+    public void changeDirection(Transform newtarget)
+    {
+        target = newtarget;
+    }
 }

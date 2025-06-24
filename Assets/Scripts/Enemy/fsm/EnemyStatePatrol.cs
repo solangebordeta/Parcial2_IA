@@ -3,44 +3,38 @@ using UnityEngine;
 public class EnemyStatePatrol : State<States>
 {
     PathFindingEnemyPatrol pathFindingEnemyPatrol;
-
-    PFEntity enemyPF;
-    PFNodeGrid grid;
+    WolfSteering wolfSteering;
 
     float patrolTimer;
     float patrolCooldown = 5f;
 
-    public EnemyStatePatrol(PFEntity entity, PathFindingEnemyPatrol pathFindingEnemyPatrol)
+    public EnemyStatePatrol(PathFindingEnemyPatrol pathFindingEnemyPatrol,WolfSteering steering)
     {
-        this.enemyPF = entity;
-        this.pathFindingEnemyPatrol = pathFindingEnemyPatrol;
+    wolfSteering = steering;
+     this.pathFindingEnemyPatrol = pathFindingEnemyPatrol;
+
+
     }
 
     public override void OnEnter()
     {
-        //grid = PFManager.Instance.Grid;
-        //SetPatrolPath();
+        wolfSteering.ChangeStearingMode(WolfSteering.SteeringMode.Move);
+        wolfSteering.changeDirection(pathFindingEnemyPatrol.currentNodeGoingNow);
     }
 
     public override void Execute()
     {
-        pathFindingEnemyPatrol.CheckForCurrentNode();
+     pathFindingEnemyPatrol.CheckForCurrentNode();
     }
 
     public override void FixedExecute()
     {
-        //enemyPF?.Executepath();
+   wolfSteering.ExecuteSteering();
     }
 
     public override void OnExit() { }
 
-    //void SetPatrolPath()
-    //{
-    //    if (grid == null || grid.nodeGrid == null || grid.nodeGrid.Length == 0) return;
-
-    //    PFNodes randomPatrolNode = grid.nodeGrid[Random.Range(0, grid.nodeGrid.Length)];
-    //    PFManager.Instance.SetPathSingle(enemyPF, randomPatrolNode);
-    //}
+   
 }
 
 
