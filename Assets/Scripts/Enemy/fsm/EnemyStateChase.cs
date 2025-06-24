@@ -2,44 +2,35 @@
 
 public class EnemyStateChase : State<States>
 {
-    private PFEntity pathEntity;
+    private GameObject Wolf;
     private EnemyController controller;
     private GameObject sheep;
 
-    public EnemyStateChase(PFEntity pathEntity, EnemyController controller)
+    public EnemyStateChase(GameObject wolfSteering, EnemyController controller)
     {
-        this.pathEntity = pathEntity;
+       this.Wolf = wolfSteering;
         this.controller = controller;
     }
 
     public override void OnEnter()
     {
         sheep = controller.Sheep;
+        var steering = Wolf.GetComponent<WolfSteering>();
+        steering.Sheeptarget = sheep.transform;
+        steering.Sheeptargetrb = sheep.GetComponent<Rigidbody>();
 
-        PFNodes sheepNode = GetClosestNode(sheep.transform.position);
-        PFManager.Instance.SetPathSingle(pathEntity, sheepNode);
+
+        steering.ChangeStearingMode(WolfSteering.SteeringMode.persuit);
     }
 
     public override void FixedExecute()
     {
-        pathEntity.Executepath();
+        Wolf.GetComponent<WolfSteering>().ExecuteSteering();
     }
 
-    PFNodes GetClosestNode(Vector3 pos)
+    public override void OnExit()
     {
-        var grid = PFManager.Instance.Grid;
-        PFNodes closest = null;
-        float minDist = float.MaxValue;
-        foreach (var node in grid.nodeGrid)
-        {
-            float dist = Vector3.Distance(pos, node.transform.position);
-            if (dist < minDist && !node.Blocked)
-            {
-                minDist = dist;
-                closest = node;
-            }
-        }
-        return closest;
+        
     }
 }
 

@@ -11,7 +11,6 @@ public class EnemyController : MonoBehaviour
    [SerializeField] PFEntity PathFinding;
    [SerializeField] private WolfSteering SteeringController;
    [SerializeField] WolfEnemy enemy;
-
     [SerializeField] lineofsight playerLOS;
     [SerializeField] EnemyLOS wolfLOS;
     [SerializeField] EnemyLOS wolfAttackLOS;
@@ -40,17 +39,23 @@ public class EnemyController : MonoBehaviour
 
         var iscloseto = new QuestionTree(() => inattackRange(), attack, chase);
         var qsawsheep = new QuestionTree(() => hasseemsheep(), iscloseto, patrol);
-        var qsawbyplayer = new QuestionTree(() => ISbeingseen(), runAway,qsawsheep);
+        var qisoutsideview = new QuestionTree(() => lostplayer(), patrol, runAway);
+        var qsawbyplayer = new QuestionTree(() => ISbeingseen(),qisoutsideview, qsawsheep);
         root = qsawbyplayer;
 
         
     }
 
-     bool inattackRange()
+    private bool lostplayer()
+    {
+        return Vector3.Distance(this.transform.position, player.transform.position) >= wolfLOS.loseplayer;
+    }
+
+    bool inattackRange()
     {
         return Vector3.Distance(this.transform.position, Sheep.transform.position) <= wolfAttackLOS.detectionRange;
     }
-   bool hasseemsheep()
+ public bool hasseemsheep()
     {
         return wolfLOS.seeingsomething();
     }
@@ -59,8 +64,8 @@ public class EnemyController : MonoBehaviour
     {
 
         patrol = new EnemyStatePatrol(PathFinding);
-        chase = new EnemyStateChase(PathFinding, this);
-        attack = new EnemyStateAttack(enemy,Sheep,this);
+        chase = new EnemyStateChase(this.gameObject, this);
+        attack = new EnemyStateAttack(this.gameObject,Sheep,this);
         runAway = new EnemyStateRunAway(SteeringController);
 
         patrol.AddTransition(States.Idle, idle);
@@ -90,7 +95,6 @@ public class EnemyController : MonoBehaviour
     {
       fsm.OnExecute();
       root.Execute();
-        wolfLOS.seeingsomething();
     }
 
     private void FixedUpdate()

@@ -2,11 +2,11 @@
 
 public class EnemyStateAttack : State<States>
 {
-    WolfEnemy Enemy;
+    GameObject Enemy;
     EnemyController Controller;
     GameObject sheepGO;
     Sheep sheep;
-    public EnemyStateAttack(WolfEnemy enemy, GameObject Sheep, EnemyController controller)
+    public EnemyStateAttack(GameObject enemy, GameObject Sheep, EnemyController controller)
     {
         Enemy = enemy;
         this.sheepGO = Sheep;
@@ -17,10 +17,11 @@ public class EnemyStateAttack : State<States>
     {
         sheepGO = Controller.Sheep; 
         sheep = sheepGO.GetComponent<Sheep>();
+        Enemy.GetComponent<WolfEnemy>().attack(sheep);
     }
     public override void Execute()
     {
-        Enemy.attack(sheep);
+        
     }
     public override void FixedExecute()
     {
@@ -28,8 +29,10 @@ public class EnemyStateAttack : State<States>
     }
 
     public override void OnExit() 
-    { 
-        sheep = null;
-        sheepGO = null;
+    {
+        var steering = Enemy.GetComponent<WolfSteering>();
+        steering.Sheeptarget = null;
+        steering.Sheeptargetrb = null;
+        Controller.Sheep = null;
     }
 }

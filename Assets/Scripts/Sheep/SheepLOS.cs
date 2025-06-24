@@ -19,14 +19,28 @@ public class SheepLOS : MonoBehaviour
 
     public bool seeingsomething()
     {
-        Ray ray = new Ray();
 
-        if (Physics.Raycast(ray, out RaycastHit rayinfo, detectionRange, obstaclesMask))
+        Collider[] hit = Physics.OverlapSphere(transform.position, detectionRange, obstaclesMask);
+
+        for (int i = 0; i < hit.Length; i++)
         {
+            Debug.DrawRay(transform.position, hit[i].transform.position - transform.position, Color.magenta);
+            if (Physics.Raycast(transform.position, hit[i].transform.position - transform.position, detectionRange, obstaclesMask))
+            {
+                if (hit[i].CompareTag("Wolf") && controller.Wolf == null)
 
-            if (rayinfo.collider.gameObject.CompareTag("Wolf")) controller.Wolf = rayinfo.collider.gameObject;
+                {
+                    controller.Wolf = hit[i].transform.parent.gameObject;
 
-            return true;
+                    return true;
+                }
+
+            }
+            else
+            {
+                return false;
+            }
+
         }
         return false;
     }

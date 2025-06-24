@@ -23,7 +23,7 @@ public class SheepMoveState : State<States>
 
     public override void FixedExecute()
     {
-        PFEntity.Executepath();
+     //   PFEntity.Executepath();
     }
     public override void OnExit()
     {
