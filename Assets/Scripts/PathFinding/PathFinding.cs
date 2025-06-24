@@ -55,12 +55,8 @@ public class PathFinding
              Mathf.Abs(a.y - b.y);
     }
 
-
     public static bool LineOfSight(Vector3 nodeA, Vector3 nodeB, LayerMask mask)
     {
         return !Physics.Linecast(nodeA, nodeB, mask);
     }
-  
-
- 
 }

@@ -2,14 +2,18 @@ using UnityEngine;
 
 public class EnemyStatePatrol : State<States>
 {
+    PathFindingEnemyPatrol pathFindingEnemyPatrol;
+
     PFEntity enemyPF;
     PFNodeGrid grid;
+
     float patrolTimer;
     float patrolCooldown = 5f;
 
-    public EnemyStatePatrol(PFEntity entity)
+    public EnemyStatePatrol(PFEntity entity, PathFindingEnemyPatrol pathFindingEnemyPatrol)
     {
         this.enemyPF = entity;
+        this.pathFindingEnemyPatrol = pathFindingEnemyPatrol;
     }
 
     public override void OnEnter()
@@ -20,12 +24,7 @@ public class EnemyStatePatrol : State<States>
 
     public override void Execute()
     {
-        //patrolTimer += Time.deltaTime;
-        //if (patrolTimer >= patrolCooldown)
-        //{
-        //    SetPatrolPath();
-        //    patrolTimer = 0f;
-        //}
+        pathFindingEnemyPatrol.CheckForCurrentNode();
     }
 
     public override void FixedExecute()

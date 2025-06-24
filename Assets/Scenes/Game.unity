@@ -351,6 +351,10 @@ PrefabInstance:
       propertyPath: Sheep
       value: 
       objectReference: {fileID: 1747933130}
+    - target: {fileID: 3736809475646125214, guid: 9cffad5233203a341a97fe4393e81a6e, type: 3}
+      propertyPath: playerLOS
+      value: 
+      objectReference: {fileID: 868235788}
     - target: {fileID: 4535187457664229002, guid: 9cffad5233203a341a97fe4393e81a6e, type: 3}
       propertyPath: PlayerRb
       value: 
@@ -5945,6 +5949,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb0801987f9c21a4db8be1a14999db3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &868235788 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7292152035771503942, guid: 47aa604360e9385439170459ca634bf8, type: 3}
+  m_PrefabInstance: {fileID: 304305431}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69cf0d7bb684e824ebad2f0ea63a0e0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &881733210
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9739,6 +9754,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 392994373}
+    - target: {fileID: 3736809475646125214, guid: 9cffad5233203a341a97fe4393e81a6e, type: 3}
+      propertyPath: playerLOS
+      value: 
+      objectReference: {fileID: 868235788}
     - target: {fileID: 4535187457664229002, guid: 9cffad5233203a341a97fe4393e81a6e, type: 3}
       propertyPath: PlayerRb
       value: 

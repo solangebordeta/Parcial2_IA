@@ -6,7 +6,6 @@ public class WolfEnemy : MonoBehaviour
 
     public void attack(Sheep sheep)
     {
-
         sheep.Life -= damage;
     }
 }
