@@ -21,6 +21,7 @@ public class playerFSM : MonoBehaviour
         idle = new IdleState(playeranim);
         move = new MoveState(rb,playerController,playeranim);
 
+
         idle.AddTransition(States.Walk, move);
         move.AddTransition(States.Idle, idle);
         FSM = new FSM<States>(idle);
@@ -34,10 +35,16 @@ public class playerFSM : MonoBehaviour
         if (IsMoving())
         {
             FSM.OnTransition(States.Walk);
+            playeranim.SetBool("IsWalking", true);
+            playeranim.SetBool("IsIdle", false);
+
         }
         else
         {
             FSM.OnTransition(States.Idle);
+            playeranim.SetBool("IsWalking", false);
+            playeranim.SetBool("IsIdle", true);
+
         }
         FSM.OnExecute();
         sheepinteract.Interact();
