@@ -185,13 +185,10 @@ PrefabInstance:
       addedObject: {fileID: 2303425046122756948}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2873d317e175f5649ad22adee108b666, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3608065439823100387}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2873d317e175f5649ad22adee108b666, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 5209150520970102598}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2873d317e175f5649ad22adee108b666, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8809700921450316865}
+      addedObject: {fileID: 5881670392166310265}
     - targetCorrespondingSourceObject: {fileID: -920241955157888523, guid: 2873d317e175f5649ad22adee108b666, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7551865938836766203}
@@ -230,9 +227,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3784c81dc88d9d45a4ff60c3039034f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PFNodeGrid: {fileID: 0}
+  PF: {fileID: 5881670392166310265}
   controller: {fileID: 5209150520970102598}
-  flock: {fileID: 8809700921450316865}
   LOS: {fileID: 3717898446143475942}
   Sheep: {fileID: 5817547521059542822}
   animator: {fileID: 0}
@@ -265,21 +261,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3608065439823100387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3349913522899659411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad48f62e21b31f342a43bf2ac5495be0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  endNode: {fileID: 0}
-  reachDistance: 0
-  speed: 1
 --- !u!114 &5209150520970102598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,11 +278,10 @@ MonoBehaviour:
   mode: 2
   Playertarget: {fileID: 4016667766343204242, guid: 47aa604360e9385439170459ca634bf8, type: 3}
   PlayerRb: {fileID: 6620851210100022084, guid: 47aa604360e9385439170459ca634bf8, type: 3}
-  WolfTransform: {fileID: 0}
-  WolfTargetRb: {fileID: 0}
+  Target: {fileID: 0}
   obstacleAvoidance: {fileID: 370333416149067921}
   rb: {fileID: 2303425046122756948}
---- !u!114 &8809700921450316865
+--- !u!114 &5881670392166310265
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -310,12 +290,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 3349913522899659411}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 880354b3903d86849ad710b46715ec9c, type: 3}
+  m_Script: {fileID: 11500000, guid: eaa98694743340344bd15801bd3ef8ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boids:
+  pFNodesStartAndEnd: []
+  mask:
     serializedVersion: 2
     m_Bits: 0
+  distanceNodeArrival: 0
 --- !u!1 &5874529656662402615 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -920241955157888523, guid: 2873d317e175f5649ad22adee108b666, type: 3}

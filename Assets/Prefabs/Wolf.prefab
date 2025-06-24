@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9103161162644767898}
-  - component: {fileID: 1533038475147793369}
   - component: {fileID: 3736809475646125214}
   - component: {fileID: 5347540075466415361}
   - component: {fileID: 4535187457664229002}
   - component: {fileID: 6805454069471245821}
+  - component: {fileID: 9089799138318135977}
   m_Layer: 0
   m_Name: Wolf
   m_TagString: Wolf
@@ -40,21 +40,6 @@ Transform:
   - {fileID: 9211523176480006934}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1533038475147793369
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2935967559358157461}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad48f62e21b31f342a43bf2ac5495be0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  endNode: {fileID: 0}
-  reachDistance: 0
-  speed: 2
 --- !u!114 &3736809475646125214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aceaae1f0a5933d43b15d3dbff7d1589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PathFinding: {fileID: 1533038475147793369}
+  PathFinding: {fileID: 9089799138318135977}
   SteeringController: {fileID: 4535187457664229002}
   enemy: {fileID: 6805454069471245821}
   playerLOS: {fileID: 0}
@@ -119,8 +104,7 @@ MonoBehaviour:
   mode: 0
   Playertarget: {fileID: 4016667766343204242, guid: 47aa604360e9385439170459ca634bf8, type: 3}
   PlayerRb: {fileID: 6620851210100022084, guid: 47aa604360e9385439170459ca634bf8, type: 3}
-  Sheeptarget: {fileID: 0}
-  Sheeptargetrb: {fileID: 0}
+  Target: {fileID: 0}
   obstacleAvoidance: {fileID: 7200067808308811195}
   rb: {fileID: 5347540075466415361}
 --- !u!114 &6805454069471245821
@@ -135,6 +119,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b75c8bbb98faa648bcdf24d0fe873a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &9089799138318135977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2935967559358157461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaa98694743340344bd15801bd3ef8ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pFNodesStartAndEnd: []
+  mask:
+    serializedVersion: 2
+    m_Bits: 128
+  distanceNodeArrival: 0
 --- !u!1 &3196314970524864438
 GameObject:
   m_ObjectHideFlags: 0

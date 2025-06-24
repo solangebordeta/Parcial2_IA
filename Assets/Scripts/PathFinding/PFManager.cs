@@ -25,12 +25,12 @@ public class PFManager : MonoBehaviour
         for (int i = 0; i < entities.Length; i++) 
         {
                var startNode = grid.nodeGrid.
-            Where(x => (x.transform.position - entities[i].transform.position).sqrMagnitude <= entities[i].reachDistance * entities[i].reachDistance)
+            Where(x => (x.transform.position - entities[i].transform.position).sqrMagnitude <= entities[i].distanceNodeArrival * entities[i].distanceNodeArrival)
                .OrderBy(x => (x.transform.position - entities[i].transform.position).sqrMagnitude).FirstOrDefault();
 
         var path = new List<PFNodes>();       
         path = PathFinding.Astar(startNode, end, walls);
-            entities[i].SetPath = path;
+            entities[i].pFNodesStartAndEnd = path;
         }
      
     }
@@ -38,13 +38,13 @@ public class PFManager : MonoBehaviour
     public void SetPathSingle(PathFindingMovement entity, PFNodes end)
     {
         var startNode = grid.nodeGrid
-            .Where(x => (x.transform.position - entity.transform.position).sqrMagnitude <= entity.reachDistance * entity.reachDistance)
+            .Where(x => (x.transform.position - entity.transform.position).sqrMagnitude <= entity.distanceNodeArrival * entity.distanceNodeArrival)
             .OrderBy(x => (x.transform.position - entity.transform.position).sqrMagnitude)
             .FirstOrDefault();
 
         if (startNode == null) return;
 
         var path = PathFinding.Astar(startNode, end, walls);
-        entity.SetPath = path;
+        entity.pFNodesStartAndEnd = path;
     }
 }

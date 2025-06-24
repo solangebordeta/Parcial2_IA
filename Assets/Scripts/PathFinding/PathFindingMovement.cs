@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PathFindingMovement : MonoBehaviour
 {
-    [SerializeField] List<PFNodes> pFNodesStartAndEnd;
+    public List<PFNodes> pFNodesStartAndEnd;
     [SerializeField] LayerMask mask;
-    [SerializeField] float distanceNodeArrival;
+     public float distanceNodeArrival;
 
     private int beginningNode;
     private int endingNode;
