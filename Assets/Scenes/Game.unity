@@ -204,7 +204,11 @@ PrefabInstance:
     - target: {fileID: 4535187457664229002, guid: 9cffad5233203a341a97fe4393e81a6e, type: 3}
       propertyPath: PlayerRb
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 392994376}
+    - target: {fileID: 4535187457664229002, guid: 9cffad5233203a341a97fe4393e81a6e, type: 3}
+      propertyPath: Playertarget
+      value: 
+      objectReference: {fileID: 392994379}
     - target: {fileID: 5347540075466415361, guid: 9cffad5233203a341a97fe4393e81a6e, type: 3}
       propertyPath: m_Constraints
       value: 84
@@ -1224,6 +1228,16 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 744281770197731532, guid: 47aa604360e9385439170459ca634bf8, type: 3}
   m_PrefabInstance: {fileID: 304305431}
   m_PrefabAsset: {fileID: 0}
+--- !u!54 &392994376 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 6620851210100022084, guid: 47aa604360e9385439170459ca634bf8, type: 3}
+  m_PrefabInstance: {fileID: 304305431}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &392994379 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4016667766343204242, guid: 47aa604360e9385439170459ca634bf8, type: 3}
+  m_PrefabInstance: {fileID: 304305431}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &408473768 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8164078558771037576, guid: 2b4bfb80d83b8e64384890e40e516e4a, type: 3}
@@ -1303,6 +1317,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sheep2
       objectReference: {fileID: 0}
+    - target: {fileID: 5209150520970102598, guid: f8407bd803a6c9e44ad0258505263f99, type: 3}
+      propertyPath: PlayerRb
+      value: 
+      objectReference: {fileID: 392994376}
+    - target: {fileID: 5209150520970102598, guid: f8407bd803a6c9e44ad0258505263f99, type: 3}
+      propertyPath: Playertarget
+      value: 
+      objectReference: {fileID: 392994379}
     - target: {fileID: 5874529656662402615, guid: f8407bd803a6c9e44ad0258505263f99, type: 3}
       propertyPath: m_Name
       value: Sheep2
@@ -3306,6 +3328,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sheep3
       objectReference: {fileID: 0}
+    - target: {fileID: 5209150520970102598, guid: f8407bd803a6c9e44ad0258505263f99, type: 3}
+      propertyPath: PlayerRb
+      value: 
+      objectReference: {fileID: 392994376}
+    - target: {fileID: 5209150520970102598, guid: f8407bd803a6c9e44ad0258505263f99, type: 3}
+      propertyPath: Playertarget
+      value: 
+      objectReference: {fileID: 392994379}
     - target: {fileID: 5874529656662402615, guid: f8407bd803a6c9e44ad0258505263f99, type: 3}
       propertyPath: m_Name
       value: Sheep3
@@ -3556,6 +3586,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 392994373}
+    - target: {fileID: 4535187457664229002, guid: 9cffad5233203a341a97fe4393e81a6e, type: 3}
+      propertyPath: PlayerRb
+      value: 
+      objectReference: {fileID: 392994376}
+    - target: {fileID: 4535187457664229002, guid: 9cffad5233203a341a97fe4393e81a6e, type: 3}
+      propertyPath: Playertarget
+      value: 
+      objectReference: {fileID: 392994379}
     - target: {fileID: 5347540075466415361, guid: 9cffad5233203a341a97fe4393e81a6e, type: 3}
       propertyPath: m_Constraints
       value: 84
@@ -4052,6 +4090,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sheep1
       objectReference: {fileID: 0}
+    - target: {fileID: 5209150520970102598, guid: f8407bd803a6c9e44ad0258505263f99, type: 3}
+      propertyPath: PlayerRb
+      value: 
+      objectReference: {fileID: 392994376}
+    - target: {fileID: 5209150520970102598, guid: f8407bd803a6c9e44ad0258505263f99, type: 3}
+      propertyPath: Playertarget
+      value: 
+      objectReference: {fileID: 392994379}
     - target: {fileID: 5874529656662402615, guid: f8407bd803a6c9e44ad0258505263f99, type: 3}
       propertyPath: m_Name
       value: Sheep1
@@ -4803,6 +4849,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sheep
       objectReference: {fileID: 0}
+    - target: {fileID: 5209150520970102598, guid: f8407bd803a6c9e44ad0258505263f99, type: 3}
+      propertyPath: PlayerRb
+      value: 
+      objectReference: {fileID: 392994376}
+    - target: {fileID: 5209150520970102598, guid: f8407bd803a6c9e44ad0258505263f99, type: 3}
+      propertyPath: Playertarget
+      value: 
+      objectReference: {fileID: 392994379}
     - target: {fileID: 5874529656662402615, guid: f8407bd803a6c9e44ad0258505263f99, type: 3}
       propertyPath: m_Name
       value: Sheep
