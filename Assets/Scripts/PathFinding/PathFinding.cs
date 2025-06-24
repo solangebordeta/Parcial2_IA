@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class PathFinding
 {
-  
     public static List<PFNodes> Astar(PFNodes start, PFNodes end, LayerMask mask)
     {
         var frontier = new PriorityQueue<PFNodes>();
@@ -35,7 +34,7 @@ public class PathFinding
             for (int i = 0; i < currentInSearch.Neighbors.Count; i++)
             {
                 var next = currentInSearch.Neighbors[i];
-                if (next.Blocked || !LineOfSight(currentInSearch.transform.position, next.transform.position, mask)) continue;
+                //if (next.Blocked || !LineOfSight(currentInSearch.transform.position, next.transform.position, mask)) continue;
                 float newCost = costSoFar[currentInSearch] + next.Cost;
                 if (!costSoFar.ContainsKey(next) || newCost < costSoFar[next])
                 {

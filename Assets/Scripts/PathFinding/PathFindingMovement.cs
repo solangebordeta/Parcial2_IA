@@ -22,20 +22,42 @@ public class PathFindingMovement : MonoBehaviour
         beginningNode = 0;
         endingNode = 1;
 
+        if (pFNodesStartAndEnd == null || pFNodesStartAndEnd.Count < 2)
+        {
+            Debug.LogError("Debe haber al menos 2 nodos asignados en 'pFNodesStartAndEnd'");
+            return;
+        }
+
         pFNodesAllRoute = PathFinding.Astar(pFNodesStartAndEnd[beginningNode], pFNodesStartAndEnd[endingNode], mask);
 
+        if (pFNodesAllRoute == null || pFNodesAllRoute.Count == 0)
+        {
+            Debug.LogError("El pathfinding no devolvió ningún camino.");
+            return;
+        }
+
+        currentNodeRoute = 0;
         currentNodeGoingNow = pFNodesAllRoute[currentNodeRoute].transform;
     }
 
+
     public void CheckForCurrentNode()
     {
-        if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(pFNodesAllRoute[currentNodeRoute].transform.position.x, 0, pFNodesAllRoute[currentNodeRoute ].transform.position.z)) <= distanceNodeArrival)
+        if (pFNodesAllRoute == null || pFNodesAllRoute.Count == 0 || currentNodeRoute >= pFNodesAllRoute.Count)
+        {
+            Debug.LogWarning("No hay camino disponible o el índice está fuera de rango.");
+            return;
+        }
+
+        if (Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z),
+                             new Vector3(pFNodesAllRoute[currentNodeRoute].transform.position.x, 0, pFNodesAllRoute[currentNodeRoute].transform.position.z)) <= distanceNodeArrival)
         {
             if (currentNodeRoute < pFNodesAllRoute.Count - 1)
             {
                 currentNodeRoute++;
-                currentNodeGoingNow = pFNodesAllRoute [currentNodeRoute -1].transform;
+                currentNodeGoingNow = pFNodesAllRoute[currentNodeRoute].transform;
             }
         }
     }
+
 }
