@@ -8,9 +8,9 @@ using static UnityEngine.EventSystems.EventTrigger;
 public class EnemyController : MonoBehaviour
 {
 
-   [SerializeField] PFEntity PathFinding;
-   [SerializeField] private WolfSteering SteeringController;
-   [SerializeField] WolfEnemy enemy;
+    [SerializeField] PFEntity PathFinding;
+    [SerializeField] private WolfSteering SteeringController;
+    [SerializeField] WolfEnemy enemy;
     [SerializeField] lineofsight playerLOS;
     [SerializeField] EnemyLOS wolfLOS;
     [SerializeField] EnemyLOS wolfAttackLOS;
@@ -42,8 +42,6 @@ public class EnemyController : MonoBehaviour
         var qisoutsideview = new QuestionTree(() => lostplayer(), patrol, runAway);
         var qsawbyplayer = new QuestionTree(() => ISbeingseen(),qisoutsideview, qsawsheep);
         root = qsawbyplayer;
-
-        
     }
 
     private bool lostplayer()
@@ -55,7 +53,7 @@ public class EnemyController : MonoBehaviour
     {
         return Vector3.Distance(this.transform.position, Sheep.transform.position) <= wolfAttackLOS.detectionRange;
     }
- public bool hasseemsheep()
+    public bool hasseemsheep()
     {
         return wolfLOS.seeingsomething();
     }

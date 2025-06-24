@@ -14,7 +14,7 @@ public class SheepLOS : MonoBehaviour
 
     public SheepController controller;
 
-    //Comprueba si el objetivo estEdentro del rango de visión.
+    //Comprueba si el objetivo esta dentro del rango de visión.
 
 
     public bool seeingsomething()

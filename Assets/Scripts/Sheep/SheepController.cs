@@ -1,26 +1,28 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Profiling.Memory.Experimental;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
 
 public class SheepController : MonoBehaviour
 {
-[SerializeField] PFEntity PFEntity;
-[SerializeField]SheepSteering controller;
-[SerializeField] Flocking flock;
-[SerializeField] SheepLOS LOS;
-[SerializeField] Sheep Sheep;
-[SerializeField] Animator animator;
- public GameObject Wolf;
- 
- SheepMoveState moveState;
- SheepRunState runState;
- SheepFlockState flockState;
+    [SerializeField] PFEntity PFEntity;
+    [SerializeField] SheepSteering controller;
+    [SerializeField] Flocking flock;
+    [SerializeField] SheepLOS LOS;
+    [SerializeField] Sheep Sheep;
+    [SerializeField] Animator animator;
+    public GameObject Wolf;
+    public bool isFollowingPlayer;
+
+    SheepMoveState moveState;
+    SheepRunState runState;
+    SheepFlockState flockState;
 
     FSM<States> fsm;
     ItreeNode root;
-    // Start is called before the first frame update
+
     void Start()
     {
         IninFSM();
@@ -32,6 +34,10 @@ public class SheepController : MonoBehaviour
         var walk = new ActionTree(() => fsm.OnTransition(States.Walk));
         var runAway = new ActionTree(() => fsm.OnTransition(States.RunAway));
         var follow = new ActionTree(() => fsm.OnTransition(States.Flock));
+
+        var isPlayerNear = new QuestionTree(() => isFollowingPlayer, follow, walk);
+        var isCloseTo = new QuestionTree(() => isEnemiesNear(), runAway, isPlayerNear);
+        root = isCloseTo;
     }
 
     private void IninFSM()
@@ -54,28 +60,10 @@ public class SheepController : MonoBehaviour
 
     }
 
-    /*private void DoTree()
+    bool isEnemiesNear()
     {
-        if (Wolf.transform.position < 5) //si el enemigo esta cerca
-        {
-            //salgo corriendo
-            fsm.OnTransition(States.RunAway);
-        }
-        else
-        {
-            if (Vector3.Distance(player.position, transform.position) < 5) //si el jugador esta cerca
-            {
-                //lo sigo
-                fsm.OnTransition(States.Flock)
-            }
-            else
-            {
-                //me quedo en mi lugar
-                Debug.Log("me quedo en mi lugar");
-            }
-        }
-
-    }*/
+        return Vector3.Distance(this.transform.position, Wolf.transform.position) <= LOS.detectionRange;
+    }
 
     // Update is called once per frame
     void Update()
