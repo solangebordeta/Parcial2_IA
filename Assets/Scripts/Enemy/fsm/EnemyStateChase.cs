@@ -19,7 +19,6 @@ public class EnemyStateChase : State<States>
         steering.Sheeptarget = sheep.transform;
         steering.Sheeptargetrb = sheep.GetComponent<Rigidbody>();
 
-
         steering.ChangeStearingMode(WolfSteering.SteeringMode.persuit);
     }
 

@@ -2,45 +2,41 @@
 
 public class SheepRunState : State<States>
 {
-    private PFNodeGrid grid;
+ 
     private GameObject wolf;
+    SheepController controller;
+    SheepSteering sheepSteering;
     private Animator animator;
 
-    public SheepRunState(PFNodeGrid pf, GameObject wolf, Animator anim)
+    public SheepRunState( SheepController wolf, SheepSteering steering,Animator anim)
     {
-        this.grid = pf;
-        this.wolf = wolf;
+        sheepSteering = steering;
+        controller = wolf;
         this.animator = anim;
     }
 
     public override void OnEnter()
     {
-        animator.SetTrigger("Run");
-
-        PFNodes farthestNode = GetFarthestNode(wolf.transform.position);
-        PFManager.Instance.SetPathSingle(grid, farthestNode);
+        wolf = controller.Wolf;
+      
+;
+        sheepSteering.WolfTransform = wolf.gameObject.transform;
+        sheepSteering.WolfTargetRb = wolf.gameObject.GetComponent<Rigidbody>();
+        sheepSteering.ChangeStearingMode(SheepSteering.SteeringMode.flee);
     }
 
     public override void FixedExecute()
     {
-        grid.Executepath();
+        sheepSteering.ExecuteSteering();
+
     }
 
-    PFNodes GetFarthestNode(Vector3 fromPos)
+    public override void OnExit()
     {
-        var grid = PFManager.Instance.Grid;
-        PFNodes farthest = null;
-        float maxDist = float.MinValue;
-        foreach (var node in grid.nodeGrid)
-        {
-            float dist = Vector3.Distance(fromPos, node.transform.position);
-            if (dist > maxDist && !node.Blocked)
-            {
-                maxDist = dist;
-                farthest = node;
-            }
-        }
-        return farthest;
+        wolf = null; 
+        controller.Wolf = null;
+        sheepSteering.WolfTransform = null;
+        sheepSteering.WolfTargetRb = null;
     }
 }
 

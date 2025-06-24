@@ -54,7 +54,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   endNode: {fileID: 0}
   reachDistance: 0
-  path: []
   speed: 2
 --- !u!114 &3736809475646125214
 MonoBehaviour:
@@ -74,7 +73,7 @@ MonoBehaviour:
   playerLOS: {fileID: 0}
   wolfLOS: {fileID: 4692790219330674717}
   wolfAttackLOS: {fileID: 4027113436501958509}
-  player: {fileID: 0}
+  player: {fileID: 744281770197731532, guid: 47aa604360e9385439170459ca634bf8, type: 3}
   Sheep: {fileID: 0}
 --- !u!54 &5347540075466415361
 Rigidbody:
@@ -101,7 +100,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 84
   m_CollisionDetection: 0
 --- !u!114 &4535187457664229002
 MonoBehaviour:
@@ -118,8 +117,8 @@ MonoBehaviour:
   maxVelocity: 10
   timePrediction: 1
   mode: 0
-  Playertarget: {fileID: 0}
-  PlayerRb: {fileID: 0}
+  Playertarget: {fileID: 4016667766343204242, guid: 47aa604360e9385439170459ca634bf8, type: 3}
+  PlayerRb: {fileID: 6620851210100022084, guid: 47aa604360e9385439170459ca634bf8, type: 3}
   Sheeptarget: {fileID: 0}
   Sheeptargetrb: {fileID: 0}
   obstacleAvoidance: {fileID: 7200067808308811195}
@@ -136,8 +135,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b75c8bbb98faa648bcdf24d0fe873a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineofsight: {fileID: 0}
-  enemyController: {fileID: 0}
 --- !u!1 &3196314970524864438
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,10 +197,10 @@ GameObject:
   - component: {fileID: 2202617368262565975}
   - component: {fileID: 4891710246897752457}
   - component: {fileID: 5645818251557887885}
-  - component: {fileID: 2591196378668311622}
-  m_Layer: 0
+  - component: {fileID: 6931403413738751927}
+  m_Layer: 6
   m_Name: Model
-  m_TagString: Untagged
+  m_TagString: Wolf
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -275,8 +272,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &2591196378668311622
-SphereCollider:
+--- !u!65 &6931403413738751927
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -294,8 +291,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 24.228, y: 63.283897, z: 124.5301}
+  m_Center: {x: 0, y: 31.77045, z: -13.381649}
 --- !u!1 &5378485068480379319
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,7 +341,7 @@ MonoBehaviour:
   avoidForce: 14.6
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
 --- !u!1 &9170100147161465077
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,8 +388,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstaclesMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 192
   detectionRange: 58
-  loseplayer: 0
+  loseplayer: 20
   detectionAngle: 115
-  controller: {fileID: 0}
+  controller: {fileID: 3736809475646125214}

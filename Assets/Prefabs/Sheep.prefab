@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3542889054547862389}
-  - component: {fileID: 3238303432994451896}
+  - component: {fileID: 3717898446143475942}
   m_Layer: 0
   m_Name: LOS
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2681497982117244969}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3238303432994451896
+--- !u!114 &3717898446143475942
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,15 +41,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 73365530670588371}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69cf0d7bb684e824ebad2f0ea63a0e0b, type: 3}
+  m_Script: {fileID: 11500000, guid: b47e28c7c4dea1e4796077aadabbfd1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   obstaclesMask:
     serializedVersion: 2
-    m_Bits: 128
-  detectionRange: 82.7
+    m_Bits: 192
+  detectionRange: 81
   loseplayer: 0
   detectionAngle: 320
+  controller: {fileID: 4417375855847567141}
 --- !u!1 &6609499746178777153
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,7 +99,7 @@ MonoBehaviour:
   avoidForce: 10
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
 --- !u!1001 &2502912087588280258
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -229,13 +230,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3784c81dc88d9d45a4ff60c3039034f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PFEntity: {fileID: 3608065439823100387}
+  PFNodeGrid: {fileID: 0}
   controller: {fileID: 5209150520970102598}
   flock: {fileID: 8809700921450316865}
-  LOS: {fileID: 0}
+  LOS: {fileID: 3717898446143475942}
   Sheep: {fileID: 5817547521059542822}
   animator: {fileID: 0}
   Wolf: {fileID: 0}
+  isFollowingPlayer: 0
 --- !u!54 &2303425046122756948
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -290,11 +292,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a13b5a20b6ac049a9c741995fa19a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxVelocity: 10
+  maxVelocity: 20
   timePrediction: 1
   mode: 2
-  Playertarget: {fileID: 0}
-  PlayerRb: {fileID: 0}
+  Playertarget: {fileID: 4016667766343204242, guid: 47aa604360e9385439170459ca634bf8, type: 3}
+  PlayerRb: {fileID: 6620851210100022084, guid: 47aa604360e9385439170459ca634bf8, type: 3}
   WolfTransform: {fileID: 0}
   WolfTargetRb: {fileID: 0}
   obstacleAvoidance: {fileID: 370333416149067921}

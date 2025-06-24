@@ -24,7 +24,7 @@ public class EnemyLOS : MonoBehaviour
     
         for (int i = 0; i < hit.Length; i++)
             {
-            Debug.DrawRay(transform.position, hit[i].transform.position - transform.position,Color.magenta);
+     
             if (Physics.Raycast(transform.position, hit[i].transform.position - transform.position, detectionRange,obstaclesMask))
             {
               if ( hit[i].CompareTag("Sheep") && controller.Sheep == null)

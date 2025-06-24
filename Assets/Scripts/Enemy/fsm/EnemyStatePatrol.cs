@@ -14,34 +14,34 @@ public class EnemyStatePatrol : State<States>
 
     public override void OnEnter()
     {
-        grid = PFManager.Instance.Grid;
-        SetPatrolPath();
+        //grid = PFManager.Instance.Grid;
+        //SetPatrolPath();
     }
 
     public override void Execute()
     {
-        patrolTimer += Time.deltaTime;
-        if (patrolTimer >= patrolCooldown)
-        {
-            SetPatrolPath();
-            patrolTimer = 0f;
-        }
+        //patrolTimer += Time.deltaTime;
+        //if (patrolTimer >= patrolCooldown)
+        //{
+        //    SetPatrolPath();
+        //    patrolTimer = 0f;
+        //}
     }
 
     public override void FixedExecute()
     {
-        enemyPF?.Executepath();
+        //enemyPF?.Executepath();
     }
 
     public override void OnExit() { }
 
-    void SetPatrolPath()
-    {
-        if (grid == null || grid.nodeGrid == null || grid.nodeGrid.Length == 0) return;
+    //void SetPatrolPath()
+    //{
+    //    if (grid == null || grid.nodeGrid == null || grid.nodeGrid.Length == 0) return;
 
-        PFNodes randomPatrolNode = grid.nodeGrid[Random.Range(0, grid.nodeGrid.Length)];
-        PFManager.Instance.SetPathSingle(enemyPF, randomPatrolNode);
-    }
+    //    PFNodes randomPatrolNode = grid.nodeGrid[Random.Range(0, grid.nodeGrid.Length)];
+    //    PFManager.Instance.SetPathSingle(enemyPF, randomPatrolNode);
+    //}
 }
 
 

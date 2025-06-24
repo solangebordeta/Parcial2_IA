@@ -30,20 +30,17 @@ public class SheepSteering : MonoBehaviour
     public enum SteeringMode
     {
         flee,
-        evade,
-        None,
         follow,
+        None,
     }
     void Start()
     {
-        none = new(rb);
         flee = new(rb, WolfTransform, maxVelocity);
-        evade = new(rb, WolfTargetRb, maxVelocity, timePrediction);
         flock = new(Playertarget,rb,PlayerRb,maxVelocity);
         
 
         //el comp. inicial es ninguna
-        currentSteering = none;
+        currentSteering = null;
     }
 
  
@@ -82,16 +79,11 @@ public class SheepSteering : MonoBehaviour
             case SteeringMode.flee:
                 currentSteering = flee;
                 break;
-            case SteeringMode.evade:
-                currentSteering = evade;
-                break;
-            case SteeringMode.None:
-                currentSteering = none;
-                break;
             case SteeringMode.follow:
                 currentSteering = flock;
                 break;
-
+            case SteeringMode.None: 
+                currentSteering = null; break;
         }
     }
 }

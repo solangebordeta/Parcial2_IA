@@ -7,7 +7,7 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class SheepController : MonoBehaviour
 {
-    [SerializeField] PFNodeGrid PFNodeGrid;
+    [SerializeField] PFEntity PFNodeGrid;
     [SerializeField] SheepSteering controller;
     [SerializeField] Flocking flock;
     [SerializeField] SheepLOS LOS;
@@ -44,7 +44,7 @@ public class SheepController : MonoBehaviour
     {
 
        moveState = new SheepMoveState(PFNodeGrid, animator);
-       runState = new SheepRunState(PFNodeGrid, Wolf, animator);
+       runState = new SheepRunState( this,controller,animator);
        flockState = new SheepFlockState(controller,flock,animator);
 
         moveState.AddTransition(States.RunAway, runState);
@@ -62,7 +62,7 @@ public class SheepController : MonoBehaviour
 
     bool isEnemiesNear()
     {
-        return Vector3.Distance(this.transform.position, Wolf.transform.position) <= LOS.detectionRange;
+        return LOS.seeingsomething();
     }
 
     // Update is called once per frame
