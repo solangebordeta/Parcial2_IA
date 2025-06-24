@@ -42,7 +42,7 @@ public class SheepController : MonoBehaviour
     {
 
        moveState = new SheepMoveState(PF, animator,controller);
-       runState = new SheepRunState( this,controller,animator);
+       runState = new SheepRunState(this,controller,animator);
        flockState = new SheepFlockState(controller,animator);
 
         moveState.AddTransition(States.RunAway, runState);

@@ -20,6 +20,8 @@ public class SheepSteering : MonoBehaviour
     public Rigidbody rb;
     private Vector3 finalForce;
 
+    [SerializeField] Boid boid;
+
     Flee flee;
     Flock flock;
     None none;
@@ -32,6 +34,7 @@ public class SheepSteering : MonoBehaviour
         None,
         move,
     }
+
     void Start()
     {
         seek = new(this.rb, null, 10);
@@ -54,7 +57,7 @@ public class SheepSteering : MonoBehaviour
         Vector3 avoidDir = obstacleAvoidance ? obstacleAvoidance.Avoid() : Vector3.zero;
 
         //suma de ambas fuerzas
-        finalForce = steeringDir + avoidDir;
+        finalForce = steeringDir + avoidDir + boid.Flocking();
 
         if (steeringDir != Vector3.zero)
         {
@@ -65,8 +68,6 @@ public class SheepSteering : MonoBehaviour
             if (rb.velocity != Vector3.zero)
                 transform.forward = rb.velocity.normalized;
         }
-
-
     }
 
     public void ChangeStearingMode(SteeringMode mode) //cambia el comportamiento segun el modo
