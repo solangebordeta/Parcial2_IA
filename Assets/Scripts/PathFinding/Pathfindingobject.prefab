@@ -56,8 +56,8 @@ MonoBehaviour:
   Wallmask:
     serializedVersion: 2
     m_Bits: 136
-  radius: 20
-  Range: 20
+  radius: 300
+  Range: 400
 --- !u!65 &4669391480455118945
 BoxCollider:
   m_ObjectHideFlags: 0

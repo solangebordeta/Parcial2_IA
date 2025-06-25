@@ -22,19 +22,10 @@ public class PathFindingMovement : MonoBehaviour
         beginningNode = 0;
         endingNode = 1;
 
-        if (pFNodesStartAndEnd == null || pFNodesStartAndEnd.Count < 2)
-        {
-            Debug.LogError("Debe haber al menos 2 nodos asignados en 'pFNodesStartAndEnd'");
-            return;
-        }
+
 
         pFNodesAllRoute = PathFinding.Astar(pFNodesStartAndEnd[beginningNode], pFNodesStartAndEnd[endingNode], mask);
 
-        if (pFNodesAllRoute == null || pFNodesAllRoute.Count == 0)
-        {
-            Debug.LogError("El pathfinding no devolvió ningún camino.");
-            return;
-        }
 
         currentNodeRoute = 0;
         currentNodeGoingNow = pFNodesAllRoute[currentNodeRoute].transform;

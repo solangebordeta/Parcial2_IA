@@ -64,4 +64,11 @@ public class PFNodes : MonoBehaviour
         this.neighbors = neighbors;
     }
 
+    private void OnDrawGizmos()
+    {
+        for (int i = 0;i < neighbors.Count;i++) 
+        {
+            Gizmos.DrawLine(transform.position, neighbors[i].transform.position);
+        }
+    }
 }
